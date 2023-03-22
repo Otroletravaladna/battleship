@@ -8,4 +8,7 @@ export function Ships(type, size, hits, sink) {
         this.hits++;
     }
     
+    this.isSunk = () => {
+        if (this.hits == this.size) this.sink = true;
+    }
 }
