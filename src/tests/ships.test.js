@@ -1,5 +1,14 @@
 import * as ships from "../ships";
 
-test("Adds 2 + 1 to equal 3", () => {
-    expect(ships.sum(1, 2)).toBe(3);
+describe("Ship obj basics calls", () => {
+    let ship;
+
+    beforeEach(function () {
+        ship = new ships.Ships("Aircraft Carrier", 5, 0, false);
+    })
+
+    test("Return ship properties", () => {
+        expect(ship).toMatchObject({type: "Aircraft Carrier", size: 5, hits: 0,
+        sink: false});
+    })
 })

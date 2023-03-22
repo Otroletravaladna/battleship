@@ -1,10 +1,11 @@
-// export function ships() {
-//     this.name = name;
-//     this.size = size; 
-//     this.hits = hits;
-//     this.sink = sink;
-// }
+export function Ships(type, size, hits, sink) {
+    this.type = type;
+    this.size = size; 
+    this.hits = hits;
+    this.sink = sink;
 
-export function sum(a, b) {
-    return a + b;
+    return {type, size, hits, sink};
 }
+
+// Ships.prototype.hit = () => { }
+ 
