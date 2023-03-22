@@ -14,12 +14,16 @@ describe("Ship object call", () => {
 })
 
 describe("Ships basic functions", () => {
+    let cruiser;
     
     beforeEach(function () {
-        ship.hit();
+        cruiser = new ships.Ships("Cruiser", 3, 2, false);
+        cruiser.hit();
     })
     
     test("Return hits", () => {
-        expect(ship.hits).toBe(1);
+        expect(cruiser.hits).toBe(3);
     })
+
+
 })
