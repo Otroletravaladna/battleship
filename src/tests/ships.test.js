@@ -19,11 +19,14 @@ describe("Ships basic functions", () => {
     beforeEach(function () {
         cruiser = new ships.Ships("Cruiser", 3, 2, false);
         cruiser.hit();
+        cruiser.isSunk();
     })
     
-    test("Return hits", () => {
+    test("Update hit counter", () => {
         expect(cruiser.hits).toBe(3);
     })
 
-
+    test("Update sink status", () => {
+        expect(cruiser.sink).toBeTruthy();
+    })
 })
