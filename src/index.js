@@ -1,4 +1,2 @@
 import "./style.css";
-
-const content = document.querySelector(".content");
-content.textContent = "Hola bebeto";
+import * as ships from "./ships";
