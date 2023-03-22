@@ -4,8 +4,8 @@ export function Ships(type, size, hits, sink) {
     this.hits = hits;
     this.sink = sink;
 
-    return {type, size, hits, sink};
+    this.hit = () => { 
+        this.hits++;
+    }
+    
 }
-
-// Ships.prototype.hit = () => { }
- 
