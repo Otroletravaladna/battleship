@@ -126,7 +126,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _sty
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"log\": () => (/* binding */ log)\n/* harmony export */ });\nfunction log() {\n    console.log(\"wking\");\n}\n\n//# sourceURL=webpack://battleship/./src/ships.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"sum\": () => (/* binding */ sum)\n/* harmony export */ });\n// export function ships() {\n//     this.name = name;\n//     this.size = size; \n//     this.hits = hits;\n//     this.sink = sink;\n// }\n\nfunction sum(a, b) {\n    return a + b;\n}\n\n//# sourceURL=webpack://battleship/./src/ships.js?");
 
 /***/ })
 
