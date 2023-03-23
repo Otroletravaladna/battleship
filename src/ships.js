@@ -22,21 +22,18 @@ export function Gameboard(ship, coords, hit) {
     else if (ship == "CR") this.ship = new Ships("Cruiser", 3, 0, false);
     else if (ship == "DT") this.ship = new Ships("Destroyer", 2, 0, false);
     else if (ship == "SB") this.ship = new Ships("Submarine", 1, 0, false);
+    
     this.coords = coords;
 
-    let board = getGrid();
-
-    function getGrid() {
-        let arr = [];
-        let alfa = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"]
-        alfa.forEach(e => {
-            for (let i = 1; i < 11; i++) {
-                arr.push(e+i);
-            }
-        });
-        
-    };
-    
+    this.receiveAttack = (hit) => {
+        if (this.coords.some(x => x == hit)){
+            this.ship.hits++;
+            return "Hit!";
+        }
+        return "Miss!";
+    }
     
 }
 
+//  let playerShip = new Gameboard("AC", ["a1", "a2", "a3", "a4", "a5"]);
+// console.log( playerShip.recieveAttack("b1"))
