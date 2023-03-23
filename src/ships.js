@@ -38,3 +38,42 @@ export function Gameboard(ship, coords, hit) {
     }
     
 }
+
+export function match(arrPlayer) {
+    let count;
+
+    const playerFleet = {
+        ac: new Gameboard("AC", arrPlayer[0]),
+        bs: new Gameboard("BS", arrPlayer[1]),
+        cr: new Gameboard("CR", arrPlayer[2]),
+        dtOne: new Gameboard("DT", arrPlayer[3]),
+        dtTwo: new Gameboard("DT", arrPlayer[4]),
+        sbOne: new Gameboard("SB", arrPlayer[5]),
+        sbTwo: new Gameboard("SB", arrPlayer[6]),
+    }
+    
+
+    function attack(enemy, coords){
+        for (let [key, value] of Object.entries(enemy)){
+            value.receiveAttack(coords);
+        }
+        // console.log(playerFleet.dtTwo.ship.hits)
+
+    }
+
+    // attack(playerFleet, "a6");
+    
+} 
+
+const playerCoords = [
+    ["a1", "a2", "a3", "a4", "a5"],
+    ["b1", "b2", "b3", "b4"],
+    ["c3", "c4", "c5"],
+    ["d2", "d3"],
+    ["a6", "a7"],
+    ["d8"],
+    ["f9"],
+]
+
+
+console.log(match(playerCoords))
