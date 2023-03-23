@@ -11,8 +11,6 @@ export function Ships(type, size, hits, sink) {
     this.isSunk = () => {
         if (this.hits == this.size) this.sink = true;
     };
-
-
 }
 
 export function Gameboard(ship, coords, hit) {
@@ -31,9 +29,12 @@ export function Gameboard(ship, coords, hit) {
             return "Hit!";
         }
         return "Miss!";
+    };
+
+    this.reportSink = () => {
+        this.ship.isSunk();
+        if (this.ship.sink == true) return `This ship is wrecked!`;
+        return `This ship still can fight!`;
     }
     
 }
-
-//  let playerShip = new Gameboard("AC", ["a1", "a2", "a3", "a4", "a5"]);
-// console.log( playerShip.recieveAttack("b1"))
