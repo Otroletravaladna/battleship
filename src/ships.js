@@ -80,10 +80,12 @@ export function match(arrPlayer, arrMachine) {
     const machineChoice = () => {
         let y = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"];
         let x = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        let visited = [];
+
 
         const lastHit = {
-            coordsy: 8, //nul
-            coordsx: 4, //null
+            coordsy: null, //nul
+            coordsx: null, //null
             state: false,
             fnIndex : 0,
         }
@@ -93,9 +95,8 @@ export function match(arrPlayer, arrMachine) {
             let coords = y + x;
             let randomy = random();
             let randomx = random();
-            console.log((y[randomy] + x[randomx]));
+            visited.push(y[randomy] + x[randomx])
 
-            // return attack(playerFleet, coords);
             if(attack(playerFleet, (y[randomy] + x[randomx]))){
                 lastHit.coordsy = randomy;
                 lastHit.coordsx = randomx;
@@ -105,52 +106,51 @@ export function match(arrPlayer, arrMachine) {
         }
 
         let adjacentChoice = (x, y) => {
-            let hitCount = -1;
+            let hitCount = 0;
             let randomAdjacent = () => (Math.floor(Math.random() * 4));
             if (hitCount == 0) {
                 let index = randomAdjacent();
                 adjMoves[index](); 
+                visited.push(y[lastHit.coordsy] + x[lastHit.coordsx]);
                 if(attack(playerFleet, (y[lastHit.coordsy] + x[lastHit.coordsx]))){
-                    // console.log("yes");    
                     lastHit.fnIndex = index;   
                     hitCount = 1;
-                    // console.log(lastHit.fnIndex);         
-                } else {
-                    console.log("No");
-                    return;
-                }
+                } else return;
 
             } else if (hitCount == 1) {
                 adjMoves[lastHit.fnIndex]();
+                visited.push(y[lastHit.coordsy] + x[lastHit.coordsx]);
                 if (attack(playerFleet, (y[lastHit.coordsy] + x[lastHit.coordsx]))) {
-                    // console.log("hc1 = active");
                     return;
                 } else {
                     hitCount = -1;
-                    // console.log("hc1 = not active", hitCount)
                 }
 
             } else if (hitCount == -1) {
                 if (lastHit.fnIndex == 0) {
                     adjMoves[2]();
+                    visited.push(y[lastHit.coordsy] + x[lastHit.coordsx]);
                     if (attack(playerFleet, (y[lastHit.coordsy] + x[lastHit.coordsx]))){
                         hitCount = 1;
                     } else return;
 
                 } else if (lastHit.fnIndex == 1) {
                     adjMoves[3]();
+                    visited.push(y[lastHit.coordsy] + x[lastHit.coordsx]);
                     if (attack(playerFleet, (y[lastHit.coordsy] + x[lastHit.coordsx]))){
                         hitCount = 1;
                     } else return;
                 
                 } else if (lastHit.fnIndex == 2) {
                     adjMoves[0]();
+                    visited.push(y[lastHit.coordsy] + x[lastHit.coordsx]);
                     if (attack(playerFleet, (y[lastHit.coordsy] + x[lastHit.coordsx]))){
                         hitCount = 1;
                     } else return;
 
                 } else if (lastHit.fnIndex == 3) {
                     adjMoves[1]();
+                    visited.push(y[lastHit.coordsy] + x[lastHit.coordsx]);
                     if (attack(playerFleet, (y[lastHit.coordsy] + x[lastHit.coordsx]))){
                         hitCount = 1;
                     } else return;
@@ -166,11 +166,9 @@ export function match(arrPlayer, arrMachine) {
             () => lastHit.coordsx--
         ]
     
-        adjacentChoice(x, y);
+        // adjacentChoice(x, y);
 
-        // if (randomChoice(x, y)) {
-        //     console.log(lastHit);
-        // };
+        // function moveCondition = 
         
     };
 
@@ -191,6 +189,9 @@ const playerCoords = [
 const machineCoords = [
 
 ]
+
+//fix the adjMoves to avoid making moves out of the table.
+//Create previous hit arr to 
 
 //Create an array for the machine
 //Test the attack function with both player and machine.
