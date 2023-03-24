@@ -4,9 +4,9 @@ export function Ships(type, size, hits, sink) {
     this.hits = hits;
     this.sink = sink;
 
-    this.hit = () => { 
-        this.hits++;
-    };
+    // this.hit = () => { 
+    //     hits++;
+    // };
     
     this.isSunk = () => {
         if (this.hits == this.size) this.sink = true;
@@ -19,27 +19,30 @@ export function Gameboard(ship, coords, hit) {
     else if (ship == "BS") this.ship = new Ships("Battleship", 4, 0, false);
     else if (ship == "CR") this.ship = new Ships("Cruiser", 3, 0, false);
     else if (ship == "DT") this.ship = new Ships("Destroyer", 2, 0, false);
-    else if (ship == "SB") this.ship = new Ships("Submarine", 1, 0, false);
+
     
     this.coords = coords;
 
     this.receiveAttack = (hit) => {
         if (this.coords.some(x => x == hit)){
-            this.ship.hits++;
-            return "Hit!";
+            this.ship.hits += 1;
+            console.log("Hit!")
+            return true;
         }
-        return "Miss!";
+        console.log("Miss!")
+        return false;
     };
 
     this.reportSink = () => {
         this.ship.isSunk();
-        if (this.ship.sink == true) return `This ship is wrecked!`;
-        return `This ship still can fight!`;
+        if (this.ship.sink == true)  return console.log(`This ship is wrecked!`);
+        return console.log("no");
+        // return console.log(`This ship still can fight!`);
     }
     
 }
 
-export function match(arrPlayer) {
+export function match(arrPlayer, arrMachine) {
     let count;
 
     const playerFleet = {
@@ -48,21 +51,109 @@ export function match(arrPlayer) {
         cr: new Gameboard("CR", arrPlayer[2]),
         dtOne: new Gameboard("DT", arrPlayer[3]),
         dtTwo: new Gameboard("DT", arrPlayer[4]),
-        sbOne: new Gameboard("SB", arrPlayer[5]),
-        sbTwo: new Gameboard("SB", arrPlayer[6]),
+
     }
+
+    // const machineFleet = {
+    //     ac: new Gameboard("AC", arrMachine[0]),
+    //     bs: new Gameboard("BS", arrMachine[1]),
+    //     cr: new Gameboard("CR", arrMachine[2]),
+    //     dtOne: new Gameboard("DT", arrMachine[3]),
+    //     dtTwo: new Gameboard("DT", arrMachine[4]),
+
+    // }
     
 
     function attack(enemy, coords){
+        let hit = false;
         for (let [key, value] of Object.entries(enemy)){
-            value.receiveAttack(coords);
+            if(value.receiveAttack(coords)) {
+                value.reportSink()
+                hit = true;
+            }
         }
-        // console.log(playerFleet.dtTwo.ship.hits)
-
+        console.log(hit);
+        return hit;      
     }
 
-    // attack(playerFleet, "a6");
+
+    const machineChoice = () => {
+        let y = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"];
+        let x = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+        const lastHit = {
+            coordsy: 0,
+            coordsx: 5,
+            state: false,
+            fnIndex : 0
+        }
+
+        let randomChoice = (x, y) =>  {
+            let random = () => (Math.floor(Math.random() * 10));
+            let coords = y + x;
+            let randomy = random();
+            let randomx = random();
+            console.log((y[randomy] + x[randomx]));
+
+            // return attack(playerFleet, coords);
+            if(attack(playerFleet, (y[randomy] + x[randomx]))){
+                lastHit.coordsy = randomy;
+                lastHit.coordsx = randomx;
+                lastHit.state = true;
+                return true;
+            }
+        }
+
+        let adjacentChoice = (x, y) => {
+            let hitCount = 0;
+            let randomAdjacent = () => (Math.floor(Math.random() * 4));
+            if (hitCount == 0) {
+                let index = randomAdjacent();
+                adjMoves[index](); 
+                if(attack(playerFleet, (y[lastHit.coordsy] + x[lastHit.coordsx]))){
+                    console.log("yes");
+                    lastHit.fnIndex = index;   
+                    hitCount = 1;
+                } else {
+                    console.log("No");
+                    return;
+                }
+
+            } else if (hitCount == 1) {
+                adjMoves[fnIndex]();
+                if (attack(playerFleet, (y[lastHit.coordsy] + x[lastHit.coordsx]))) {
+                    return;
+                } else {
+                    hitCount = -1;
+                }
+
+            } else if (hitCount == -1) {
+                if (fnIndex == 0) {
+                    adjMoves[2]();
+                    attack(playerFleet, (y[lastHit.coordsy] + x[lastHit.coordsx]));
+                }
+            }
+            
+        }
+
+        const adjMoves = [
+            () => lastHit.coordsy++,
+            () => lastHit.coordsx++,
+            () => lastHit.coordsy--,
+            () => lastHit.coordsx--
+        ]
     
+        adjacentChoice(x, y);
+
+        // if (randomChoice(x, y)) {
+        //     console.log(lastHit);
+        // };
+        
+    };
+
+    machineChoice();
+
+
 } 
 
 const playerCoords = [
@@ -71,9 +162,22 @@ const playerCoords = [
     ["c3", "c4", "c5"],
     ["d2", "d3"],
     ["a6", "a7"],
-    ["d8"],
-    ["f9"],
+
 ]
 
+const machineCoords = [
+
+]
+
+//Create an array for the machine
+//Test the attack function with both player and machine.
+//Create basic grid to set fleet of elements there.
+//Create function that allows player take turns.
+//Create logic of IA of computer. 
+//Create messages to display while playing.
+//Pay attention to the messages displayed as strings among the objects
+
+//the selector of of random choice or adjacentchoice must take as parameter the
+//lastHit.state.
 
 console.log(match(playerCoords))
