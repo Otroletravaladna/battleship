@@ -82,10 +82,10 @@ export function match(arrPlayer, arrMachine) {
         let x = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
         const lastHit = {
-            coordsy: 0,
-            coordsx: 5,
+            coordsy: 8, //nul
+            coordsx: 4, //null
             state: false,
-            fnIndex : 0
+            fnIndex : 0,
         }
 
         let randomChoice = (x, y) =>  {
@@ -105,32 +105,55 @@ export function match(arrPlayer, arrMachine) {
         }
 
         let adjacentChoice = (x, y) => {
-            let hitCount = 0;
+            let hitCount = -1;
             let randomAdjacent = () => (Math.floor(Math.random() * 4));
             if (hitCount == 0) {
                 let index = randomAdjacent();
                 adjMoves[index](); 
                 if(attack(playerFleet, (y[lastHit.coordsy] + x[lastHit.coordsx]))){
-                    console.log("yes");
+                    // console.log("yes");    
                     lastHit.fnIndex = index;   
                     hitCount = 1;
+                    // console.log(lastHit.fnIndex);         
                 } else {
                     console.log("No");
                     return;
                 }
 
             } else if (hitCount == 1) {
-                adjMoves[fnIndex]();
+                adjMoves[lastHit.fnIndex]();
                 if (attack(playerFleet, (y[lastHit.coordsy] + x[lastHit.coordsx]))) {
+                    // console.log("hc1 = active");
                     return;
                 } else {
                     hitCount = -1;
+                    // console.log("hc1 = not active", hitCount)
                 }
 
             } else if (hitCount == -1) {
-                if (fnIndex == 0) {
+                if (lastHit.fnIndex == 0) {
                     adjMoves[2]();
-                    attack(playerFleet, (y[lastHit.coordsy] + x[lastHit.coordsx]));
+                    if (attack(playerFleet, (y[lastHit.coordsy] + x[lastHit.coordsx]))){
+                        hitCount = 1;
+                    } else return;
+
+                } else if (lastHit.fnIndex == 1) {
+                    adjMoves[3]();
+                    if (attack(playerFleet, (y[lastHit.coordsy] + x[lastHit.coordsx]))){
+                        hitCount = 1;
+                    } else return;
+                
+                } else if (lastHit.fnIndex == 2) {
+                    adjMoves[0]();
+                    if (attack(playerFleet, (y[lastHit.coordsy] + x[lastHit.coordsx]))){
+                        hitCount = 1;
+                    } else return;
+
+                } else if (lastHit.fnIndex == 3) {
+                    adjMoves[1]();
+                    if (attack(playerFleet, (y[lastHit.coordsy] + x[lastHit.coordsx]))){
+                        hitCount = 1;
+                    } else return;
                 }
             }
             
