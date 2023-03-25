@@ -78,14 +78,26 @@ export function match(arrPlayer, arrMachine) {
 
 
     const machineChoice = () => {
+        
+        function selectAttack(lastHit) {
+            if (!lastHit.state) {
+                randomChoice(x, y);
+                visited.push(y[lastHit.coordsy] + x[lastHit.coordsx]);
+            }else {
+                adjacentChoice(x, y);
+                visited.push(y[lastHit.coordsy] + x[lastHit.coordsx]);
+            };
+        }
+        
+
         let y = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"];
         let x = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
         let visited = [];
 
 
         const lastHit = {
-            coordsy: null, //nul
-            coordsx: null, //null
+            coordsy: null, 
+            coordsx: null, 
             state: false,
             fnIndex : 0,
         }
@@ -160,21 +172,28 @@ export function match(arrPlayer, arrMachine) {
         }
 
         const adjMoves = [
-            () => lastHit.coordsy++,
+            //edit to contemplate visited
+            () => {
+                if(checkVisited()) lastHit.coordsy++;
+            },
             () => lastHit.coordsx++,
             () => lastHit.coordsy--,
             () => lastHit.coordsx--
         ]
-    
-        // adjacentChoice(x, y);
-
-        // function moveCondition = 
         
+        const checkVisited = () => {
+            if (visited.includes(y[lastHit.coordsy] + x[lastHit.coordsx]) ||
+             y[lastHit.coordsx] == 0 || x[lastHit.coordsx ] == 0){
+                return false;
+            } else {
+                return true;
+            }
+        }
+            
+        return lastHit;
     };
 
     machineChoice();
-
-
 } 
 
 const playerCoords = [
