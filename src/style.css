@@ -111,12 +111,12 @@ header {
     grid-template-columns: 50% 50%;
 }
 
-.player-container {
+.grid-container {
     display: grid;
     place-items: center;
 }
 
-.player-grid {
+.grid {
     display: grid;
     grid-template-columns: repeat(10, 1fr);
     grid-template-rows: repeat(10, 1fr);
@@ -133,3 +133,4 @@ header {
 .column:hover {
     background: lightblue;
 }
+
