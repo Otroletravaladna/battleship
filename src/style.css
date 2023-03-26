@@ -41,12 +41,15 @@ body {
     text-align: center;
 }
 
-.description {
+.name {
     display: none;
 }
 
 input {
     font: var(--font);
+    border: none;
+    background: rgb(55, 48, 107, .6);
+    padding: .5rem;
 }
 
 .animate {
@@ -59,16 +62,17 @@ input {
 .next > button {
     font-family: var(--font);
     font-size: 1.5rem;
-    background: #37306B;
+    background: rgb(55, 48, 107, .6);
     color: white;
     border: none;
     padding: .5rem 1rem;
     text-shadow: 0 0 2px rgba(255, 255, 255, .6);
     text-transform: uppercase;
+    margin: 1rem;
 }
 
 .next > button:hover {
-    background: rgb(55, 48, 107, .6);
+    background: rgb(55, 48, 107, .3);
     cursor: pointer;
     text-shadow: 0 0 5px rgba(255, 255, 255, .9);
 }

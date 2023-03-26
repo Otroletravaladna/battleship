@@ -1,6 +1,7 @@
 export function changeText() {
     let container = document.querySelector(".description > h2");
     let next = document.querySelector(".next > button");
+    let name = document.querySelector(".name");
     let count = 0;
 
     next.addEventListener("click", (e) => {
@@ -16,6 +17,8 @@ export function changeText() {
             container.textContent = paraContent.third;
         } else if (count == 2) {
             container.style.display = "none";
+            name.style.display = "block";
+            next.textContent = "Play";
         }
         
     }, false)
