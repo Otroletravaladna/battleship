@@ -14,8 +14,8 @@ export function changeText() {
     }, false)
 
     window.addEventListener("keydown", (e) => {
-        if (e.keyCode == 13) nextScreen();
-    })
+        if (e.keyCode == 13 && count < 4) nextScreen();
+    }, false)
 
     function nextScreen() {
         container.classList.remove("animate")
@@ -36,6 +36,7 @@ export function changeText() {
             menuScreen.style.display = "none";
             game.createGrids();
             game.displayPlayerName();
+            count++;
         } 
     }
 }

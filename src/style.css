@@ -20,9 +20,8 @@ body {
 }
 
 .header {
-    /* background: url(https://media.giphy.com/media/jOtazvv6bN4ccCzRKO/giphy.gif); */
+    background: url(https://media.giphy.com/media/jOtazvv6bN4ccCzRKO/giphy.gif);
     background-size: cover;
-    background: #000;
     -moz-background-clip: text;
     -webkit-background-clip: text;
 
@@ -95,25 +94,25 @@ input {
     height: 100svh;
     display: none;
     grid-template-columns: 10% auto 10%;
-    grid-template-rows: 30% auto;
+    grid-template-rows: auto 30%;
 }
 
-header {
+.info {
     grid-column: 2 / 3;
-    grid-row: 1 / 2;
+    grid-row: 2 / 3;
 }
 
 .game-content {
     display: grid;
     grid-column: 1 / 4;
-    grid-row: 2 / 3;
+    grid-row: 1 / 2;
 
     grid-template-columns: 50% 50%;
 }
 
 .grid-container {
     display: grid;
-    grid-template-rows: 5% auto;
+    grid-template-rows: 10% auto;
     place-items: center;
 }
 
@@ -137,10 +136,17 @@ header {
 
 .grid-container > h2 {
     margin: 0;
-    height: min-content;
+    align-self: self-end;
 }
 
 .player-grid {
     text-transform: capitalize;
+}
+
+.info {
+    display: grid;
+    grid-column: 1 / 4;
+    grid-template-columns: 60% 40%;
+    place-items: center;
 }
 
