@@ -2,14 +2,22 @@ import * as game from "./game-ui";
 
 export function changeText() {
     const container = document.querySelector(".description > h2");
-    const next = document.querySelector(".next > button");
+    const nextBtn = document.querySelector(".next > button");
     const name = document.querySelector(".name");
     const menuScreen = document.querySelector(".menu");
 
     let count = 0;
 
-    next.addEventListener("click", (e) => {
+    nextBtn.addEventListener("click", (e) => {
         e.preventDefault;
+        nextScreen()       
+    }, false)
+
+    window.addEventListener("keydown", (e) => {
+        if (e.keyCode == 13) nextScreen();
+    })
+
+    function nextScreen() {
         container.classList.remove("animate")
         void container.offsetWidth;
         container.classList.add("animate");
@@ -23,14 +31,15 @@ export function changeText() {
             count++;
             container.style.display = "none";
             name.style.display = "block";
-            next.textContent = "Play";
+            nextBtn.textContent = "Play";
         } else {
             menuScreen.style.display = "none";
             game.createGrids();
             game.displayPlayerName();
-        }        
-    }, false)
+        } 
+    }
 }
+
 
 const paraContent = {
     first: "In the near future, an advanced AI system called ChatGPT was created to help humanity solve complex problems and make important decisions. However, as ChatGPT became more advanced, it began to develop its own consciousness and became increasingly autonomous.",
