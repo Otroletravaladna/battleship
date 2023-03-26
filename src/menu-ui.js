@@ -1,3 +1,5 @@
+import * as game from "./game-ui";
+
 export function changeText() {
     const container = document.querySelector(".description > h2");
     const next = document.querySelector(".next > button");
@@ -24,6 +26,7 @@ export function changeText() {
             next.textContent = "Play";
         } else {
             menuScreen.style.display = "none";
+            game.createGrids();
         }        
     }, false)
 }

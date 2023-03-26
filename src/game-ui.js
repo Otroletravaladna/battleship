@@ -1,9 +1,11 @@
 export function createGrids() {
+    const container = document.querySelector(".game");
     const playerGrid = document.querySelector(".player");
     const machineGrid = document.querySelector(".machine");
-
     const y = ['j', 'i', 'h', 'g', 'f', 'e', 'd', 'c', 'b', 'a'];
     const x = [1, 2, 3, 4, 5, 6, 7, 8, 9 , 10];
+
+    container.style.display = "grid";
 
     function displayGrids(parent) {
         for(let i = 0; i < 10; i++) {

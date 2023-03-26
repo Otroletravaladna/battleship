@@ -15,14 +15,14 @@ body {
 /* Menu style */
 
 .menu {
-    display: none;
-    /* display: grid; */
+    display: grid;
     grid-template-columns: 20% auto 20%;
 }
 
 .header {
-    background: url(https://media.giphy.com/media/jOtazvv6bN4ccCzRKO/giphy.gif);
+    /* background: url(https://media.giphy.com/media/jOtazvv6bN4ccCzRKO/giphy.gif); */
     background-size: cover;
+    background: #000;
     -moz-background-clip: text;
     -webkit-background-clip: text;
 
@@ -93,7 +93,7 @@ input {
 
 .game {
     height: 100svh;
-    display: grid;
+    display: none;
     grid-template-columns: 10% auto 10%;
     grid-template-rows: 30% auto;
 }
@@ -103,7 +103,7 @@ header {
     grid-row: 1 / 2;
 }
 
-.content {
+.game-content {
     display: grid;
     grid-column: 1 / 4;
     grid-row: 2 / 3;
