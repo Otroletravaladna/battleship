@@ -27,6 +27,7 @@ export function changeText() {
         } else {
             menuScreen.style.display = "none";
             game.createGrids();
+            game.displayPlayerName();
         }        
     }, false)
 }

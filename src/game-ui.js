@@ -2,7 +2,7 @@ export function createGrids() {
     const container = document.querySelector(".game");
     const playerGrid = document.querySelector(".player");
     const machineGrid = document.querySelector(".machine");
-    
+
     const y = ['j', 'i', 'h', 'g', 'f', 'e', 'd', 'c', 'b', 'a'];
     container.style.display = "grid";
 
@@ -25,3 +25,13 @@ export function createGrids() {
     displayGrids(playerGrid);
     displayGrids(machineGrid);
 }
+
+export function displayPlayerName() {
+    const input = document.querySelector("input");
+    const nameDisplay = document.querySelector(".player-name");
+
+    if (!input.value) nameDisplay.textContent = "Elon Musk";
+    else nameDisplay.textContent = input.value;
+
+}
+
