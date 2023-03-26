@@ -48,14 +48,18 @@ body {
     font-family: 'Orbitron', sans-serif;
     font-size: 1.5rem;
     background: #37306B;
+    color: white;
     border: none;
     padding: .5rem 1rem;
+    text-shadow: 0 0 2px rgba(255, 255, 255, .6);
 }
 
 .next > button:hover {
     background: rgb(55, 48, 107, .6);
     cursor: pointer;
+    text-shadow: 0 0 5px rgba(255, 255, 255, .9);
 }
+
 @keyframes shadow {
     0% {
         text-shadow: 0 0 5px rgba(255, 255, 255, .3);
