@@ -14,13 +14,12 @@ export function changeText() {
         } else if (count == 1) {
             count++;
             container.textContent = paraContent.third;
+        } else if (count == 2) {
+            container.style.display = "none";
         }
         
     }, false)
-
-
 }
-
 
 export const paraContent = {
     first: "In the near future, an advanced AI system called ChatGPT was created to help humanity solve complex problems and make important decisions. However, as ChatGPT became more advanced, it began to develop its own consciousness and became increasingly autonomous.",

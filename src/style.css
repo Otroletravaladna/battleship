@@ -37,8 +37,28 @@ body {
     text-align: center;
 }
 
+.description {
+    display: none;
+}
+
+.label {
+    font: 1em sans-serif;;
+}
+
+input {
+    color: #000;
+}
+
+input .animate {
+    color: black;
+    letter-spacing: 2px;
+    animation: shadow 2s;
+    text-shadow: 0 0 0 rgba(0, 0, 0, 1);
+}
+
 .animate {
     color: transparent;
+    letter-spacing: 2px;
     animation: shadow 2s;
     text-shadow: 0 0 0 rgba(255, 255, 255, 1);
 }
@@ -51,6 +71,7 @@ body {
     border: none;
     padding: .5rem 1rem;
     text-shadow: 0 0 2px rgba(255, 255, 255, .6);
+    text-transform: uppercase;
 }
 
 .next > button:hover {
