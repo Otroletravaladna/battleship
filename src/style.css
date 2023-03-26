@@ -146,34 +146,43 @@ input {
 .info {
     display: grid;
     grid-column: 1 / 4;
+    grid-row: 2 / 3;
     grid-template-columns: 50% 50%;
     overflow: hidden;
+
 }
 
 .message {
-    grid-column: 1 / 2;
+    grid-column: 2 / 3;
 }
 
 .set-fleet {
-    grid-column: 2 / 3;
+    justify-self: center;
+    grid-column: 1 / 2;
     display: grid;
     grid-template-rows: 10% 10% 80%;
-    justify-items: center;
+    place-items: center;
 }
 
 .set-fleet > h3 {
     margin: 0;
+    grid-row: 1 / 2;
 }
 
 .set-fleet > button {
     width: fit-content;
+    grid-row: 2 / 3;
+
+    font: var(--font);
 }
 
 .fleet-display {
-    width: 90%;
-    height: 90%;
+    /* user-select: none; */
+    grid-row: 3 /4;
+    width: 100%;
+    height: 100%;
     background: url("./images/fleet/aircraft-carrier.svg");
-    background-size: min(250px, 40%);
+    background-size: 95%;
     background-repeat: no-repeat;
     background-position: center;
 }
