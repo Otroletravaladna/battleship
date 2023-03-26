@@ -14,7 +14,7 @@ export function createGrids() {
             parent.append(row);
             for(let j = 0; j < 10; j++) {
                 const column = document.createElement("div");
-                column.classList.add(`item`,`${y[j] + (i + 1)}`);
+                column.classList.add(`${y[j] + (i + 1)}`);
                 column.textContent = "";
                 row.appendChild(column);
             }

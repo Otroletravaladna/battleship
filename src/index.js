@@ -4,5 +4,6 @@ import * as menu from "./menu-ui";
 import * as game from "./game-ui";
 
 menu.changeText();
-
 game.createGrids();
+
+
