@@ -94,7 +94,7 @@ input {
     height: 100svh;
     display: none;
     grid-template-columns: 10% auto 10%;
-    grid-template-rows: auto 30%;
+    grid-template-rows: auto 40%;
 }
 
 .info {
@@ -146,7 +146,38 @@ input {
 .info {
     display: grid;
     grid-column: 1 / 4;
-    grid-template-columns: 60% 40%;
-    place-items: center;
+    grid-template-columns: 50% 50%;
+    overflow: hidden;
 }
 
+.message {
+    grid-column: 1 / 2;
+}
+
+.set-fleet {
+    grid-column: 2 / 3;
+    display: grid;
+    grid-template-rows: 10% 10% 80%;
+    justify-items: center;
+}
+
+.set-fleet > h3 {
+    margin: 0;
+}
+
+.set-fleet > button {
+    width: fit-content;
+}
+
+.fleet-display {
+    width: 90%;
+    height: 90%;
+    background: url("./images/fleet/aircraft-carrier.svg");
+    background-size: min(250px, 40%);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.fleet-display:hover {
+    transform: rotate(90deg);
+}
