@@ -12,8 +12,11 @@ body {
     margin: 0;
 }
 
+/* Menu style */
+
 .menu {
-    display: grid;
+    display: none;
+    /* display: grid; */
     grid-template-columns: 20% auto 20%;
 }
 
@@ -84,4 +87,49 @@ input {
     100% {
         text-shadow: 0 0 1px rgba(255, 255, 255, 1);
     }
+}
+
+/* game style */
+
+.game {
+    height: 100svh;
+    display: grid;
+    grid-template-columns: 10% auto 10%;
+    grid-template-rows: 20% auto;
+}
+
+header {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+}
+
+.content {
+    display: grid;
+    grid-column: 1 / 4;
+    grid-row: 2 / 3;
+
+    grid-template-columns: 50% 50%;
+}
+
+.player-container {
+    display: grid;
+    place-items: center;
+}
+
+.player-grid {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    aspect-ratio: 1 / 1;
+}
+
+.column{
+    border: 1px solid black;
+    width: 2rem;
+    height: 2rem;
+
+}
+
+.column:hover {
+    background: lightblue;
 }
