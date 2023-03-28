@@ -130,6 +130,13 @@ button:hover {
 
 }
 
+.player > div, .machine > div{
+    border: 1px solid black;
+    width: 2rem;
+    height: 2rem;
+    background-color: white;
+}
+
 .column > div:hover {
     background: lightblue;
 }
@@ -190,7 +197,7 @@ button:hover {
 }
 
 .fleet-item {
-    background: #57C5B6;
+    background: #3F497F;
     width: 2rem;
     height: 2rem;
     border: solid 1px black;
