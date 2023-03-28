@@ -183,15 +183,17 @@ button:hover {
     place-content: center;
 }
 
-
 .item-container {
-    display: grid;
+    display: flex;
     width: fit-content;
+    flex-direction: column;
 }
 
 .fleet-item {
+    background: #57C5B6;
     width: 2rem;
     height: 2rem;
-    background-color: white;
     border: solid 1px black;
 }
+
+/* drag test  */
