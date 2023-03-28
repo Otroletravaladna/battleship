@@ -123,13 +123,6 @@ button:hover {
     aspect-ratio: 1 / 1;
 }
 
-.column > div{
-    border: 1px solid black;
-    width: 2rem;
-    height: 2rem;
-
-}
-
 .player > div, .machine > div{
     border: 1px solid black;
     width: 2rem;
@@ -137,7 +130,7 @@ button:hover {
     background-color: white;
 }
 
-.column > div:hover {
+.player > div:hover , .machine > div:hover{
     background: lightblue;
 }
 
@@ -194,13 +187,16 @@ button:hover {
     display: flex;
     width: fit-content;
     flex-direction: column;
+    background: #3F497F;
 }
 
-.fleet-item {
-    background: #3F497F;
+.fleet-item{
     width: 2rem;
     height: 2rem;
     border: solid 1px black;
+    box-sizing: content-box;
 }
 
-/* drag test  */
+#selected {
+    background-color: lightblue;
+}

@@ -4,7 +4,6 @@ export function createGrids() {
     const machineGrid = document.querySelector(".machine");
 
     const y = ['j', 'i', 'h', 'g', 'f', 'e', 'd', 'c', 'b', 'a'];
-    const x = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
     container.style.display = "grid";
 
     function displayGrid(parent) {
@@ -16,28 +15,9 @@ export function createGrids() {
             }
         })
     }
-
-    function displayGrids(parent) {
-        for(let i = 0; i < 10; i++) {
-            const row = document.createElement("div");
-            row.classList.add(`column`);
-            row.style.backgroundColor = "white";
-            row.textContent = "";
-            parent.append(row);
-            for(let j = 0; j < 10; j++) {
-                const column = document.createElement("div");
-                column.classList.add(`${y[j] + (i + 1)}`);
-                column.textContent = "";
-                row.appendChild(column);
-            }
-        }
-    }
     
     displayGrid(playerGrid);
     displayGrid(machineGrid);
-    
-    // displayGrids(playerGrid);
-    // displayGrids(machineGrid);
     dragItem();
 }
 
@@ -63,13 +43,16 @@ function displayFleetElement() {
     function changeAxis() {
         const btn = document.querySelector(".change-axis");
         let isRow = false;
+        container.id = "column";
         
         btn.addEventListener("click", () => {
             if (!isRow) {
                 container.style.flexDirection = "row"
+                container.id = "row";
                 isRow = true;
             } else {
                 container.style.flexDirection = "column";
+                container.id = "column";
                 isRow = false;
             };
         })
@@ -82,42 +65,54 @@ function displayFleetElement() {
 displayFleetElement();
 
 function dragItem() {
-    let dragged; 
+    let dragged;
 
-    const src = document.querySelector(".item-container");
-    src.addEventListener("drag", (e) => {
-        console.log("dragging");
-    })
+    const src = document.querySelector(".item-container");    
+
 
     src.addEventListener("dragstart", (e) => {
-        dragged = e.target;
+        // src.id = "selected"
         e.dataTransfer.setDragImage(src, 0, 0);
-        e.target.classList.add("draggin");
-    })
-
-    src.addEventListener("dragend", (e) => {
-        e.target.classList.remove("draggin");
     })
 
     const target = document.querySelector(`.player.grid`);
+
 
     target.addEventListener("dragover", (e) => {
         e.preventDefault();
     }, false);
 
     target.addEventListener("dragenter", (e) => {
-        e.target.classList.add("dragover");
-        console.log(e.target);
+        // e.target.classList.add("dragover");
+        // console.log(e.target);
     })
 
     target.addEventListener("dragleave", (e) => {
-        e.target.classList.remove("dragover");
+        // console.log("dragleave");
     })
 
     target.addEventListener("drop", (e) => {
         e.preventDefault();
-        e.target.classList.remove("dragover");
-        e.target.append(dragged);
+        appendItem(e, target, src);
     })
+
+    function appendItem(e, target) {
+        const y = ['j', 'i', 'h', 'g', 'f', 'e', 'd', 'c', 'b', 'a'];
+        const targetx = Number(e.target.className.slice(1));
+        const targety = e.target.className[0];
+        let itemAxis = src.id;
+
+        if (itemAxis == "row") {
+            for (let i = 0; i < src.childElementCount; i++){
+                document.querySelector(`.${targety + (targetx + i)}`).id = "selected";
+            }
+
+        } else {
+            for (let i = 0; i < src.childElementCount; i++){
+                document.querySelector(`.${y[y.indexOf(targety) + i] +  targetx}`).id = "selected";
+                console.log(y.indexOf(targety), targetx)
+            }
+        }
+    }
 }
 
