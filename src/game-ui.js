@@ -32,6 +32,21 @@ export function displayPlayerName() {
 
     if (!input.value) nameDisplay.textContent = "Elon Musk";
     else nameDisplay.textContent = input.value;
-
 }
+
+function displayFleetElement() {
+    let container = document.querySelector(".fleet-container");
+
+    const ac = (container) => {
+        for(let i = 0; i < 4; i++) {
+            let cell = document.createElement("div");
+            cell.classList.add("fleet-item");
+            container.appendChild(cell);
+        }
+    }
+
+    ac(container);
+}
+
+displayFleetElement();
 
