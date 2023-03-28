@@ -181,6 +181,18 @@ input {
     height: 100%;
 }
 
-.fleet-display:hover {
+.item-container:hover {
     transform: rotate(90deg);
+}
+
+.item-container {
+    display: grid;
+    place-content: center;
+}
+
+.fleet-item {
+    width: 2rem;
+    height: 2rem;
+    background-color: white;
+    border: solid 1px black;
 }

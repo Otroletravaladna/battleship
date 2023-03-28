@@ -35,7 +35,7 @@ export function displayPlayerName() {
 }
 
 function displayFleetElement() {
-    let container = document.querySelector(".fleet-container");
+    let container = document.querySelector(".item-container");
 
     const ac = (container) => {
         for(let i = 0; i < 4; i++) {
