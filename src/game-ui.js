@@ -45,8 +45,17 @@ function displayFleetElement() {
         }
     }
 
+    function changeAxis() {
+        const btn = document.querySelector(".change-axis");
+    
+        btn.onclick = () => container.style.transform += "rotate(90deg)";
+    }
+
+    changeAxis();
     ac(container);
 }
+
+
 
 displayFleetElement();
 

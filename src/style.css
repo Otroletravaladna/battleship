@@ -189,10 +189,6 @@ input {
     width: fit-content;
 }
 
-.item-container:hover {
-    transform: rotate(90deg);
-}
-
 .fleet-item {
     width: 2rem;
     height: 2rem;
