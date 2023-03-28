@@ -38,7 +38,7 @@ function displayFleetElement() {
     let container = document.querySelector(".item-container");
 
     const ac = (container) => {
-        for(let i = 0; i < 4; i++) {
+        for(let i = 0; i < 5; i++) {
             let cell = document.createElement("div");
             cell.classList.add("fleet-item");
             container.appendChild(cell);

@@ -179,15 +179,18 @@ input {
     grid-row: 3 /4;
     width: 100%;
     height: 100%;
+    display: grid;
+    place-content: center;
+}
+
+
+.item-container {
+    display: grid;
+    width: fit-content;
 }
 
 .item-container:hover {
     transform: rotate(90deg);
-}
-
-.item-container {
-    display: grid;
-    place-content: center;
 }
 
 .fleet-item {
