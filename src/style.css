@@ -61,7 +61,7 @@ input {
     text-shadow: 0 0 0 rgba(255, 255, 255, 1);
 }
 
-.next > button {
+button {
     font-family: var(--font);
     font-size: 1.5rem;
     background: rgb(55, 48, 107, .6);
@@ -73,7 +73,7 @@ input {
     margin: 1rem;
 }
 
-.next > button:hover {
+button:hover {
     background: rgb(55, 48, 107, .3);
     cursor: pointer;
     text-shadow: 0 0 5px rgba(255, 255, 255, .9);
@@ -171,8 +171,8 @@ input {
 
 .set-fleet > button {
     width: fit-content;
+    font-size: 1rem;
     grid-row: 2 / 3;
-    font: var(--font);
 }
 
 .fleet-display {
