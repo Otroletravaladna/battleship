@@ -1,5 +1,4 @@
-let shipSize = 5;
-
+export let shipSize = 5;
 export function createGrids() {
     const container = document.querySelector(".game");
     const playerGrid = document.querySelector(".player");
@@ -42,40 +41,28 @@ function displayFleetElement(shipSize) {
             container.appendChild(cell);
         }
     }
-
-    function changeAxis() {
-        const btn = document.querySelector(".change-axis");
-        let isRow = false;
-        container.id = "column";
-        
-        btn.addEventListener("click", () => {
-            if (!isRow) {
-                container.style.flexDirection = "row"
-                container.id = "row";
-                isRow = true;
-            } else {
-                container.style.flexDirection = "column";
-                container.id = "column";
-                isRow = false;
-            };
-        })
-    }
-
-    changeAxis();
+    
     generateShip(container);
+}
+
+
+export function changeAxis() {
+    const container = document.querySelector(".item-container");
+    
+    if (container.id == "column") {
+        container.style.flexDirection = "row"
+        container.id = "row";
+    } else {
+        container.style.flexDirection = "column";
+        container.id = "column";
+    }
 }
 
 displayFleetElement(shipSize);
 
 function dragItem() {
     const src = document.querySelector(".item-container");
-    // const srcChild = src.children;
     const target = document.querySelector(`.player.grid`);
-
-    // src.addEventListener("drag", (e) => {
-    //     let coso = handleItems(e, src);
-    //     console.log(coso)
-    // })
 
     src.addEventListener("dragstart", (e) => {
         src.style.background = "lightblue";
@@ -104,7 +91,6 @@ function dragItem() {
                 }
             })
         };
-    
 
     }, false);
 
@@ -140,8 +126,6 @@ function dragItem() {
             if (shipSize == 0) src.remove();
             else if(shipSize < 3) displayFleetElement(2);
             else displayFleetElement(shipSize);
-            //trigger machine auto fleet selection.
-            //trigger match.
         }
     })
 
@@ -170,4 +154,3 @@ function dragItem() {
         return rowItems;
     }
 }
-
