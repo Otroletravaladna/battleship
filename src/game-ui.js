@@ -1,3 +1,5 @@
+import * as data from "./data";
+
 export let shipSize = 5;
 export function createGrids() {
     const container = document.querySelector(".game");
@@ -121,12 +123,15 @@ function dragItem() {
             })
 
         } else if (!ship.some((e) => e.id == "selected")) {
-            ship.forEach(e => {e.id = "selected"})
+            ship.forEach(e => {e.id = "selected";
+        })
             shipSize--;
             if (shipSize == 0) src.remove();
             else if(shipSize < 3) displayFleetElement(2);
             else displayFleetElement(shipSize);
+            data.playerCoords.push(ship.map(e => e.className));
         }
+        console.log(data.playerCoords);
     })
 
     function handleItems(e, target) {
@@ -154,3 +159,4 @@ function dragItem() {
         return rowItems;
     }
 }
+

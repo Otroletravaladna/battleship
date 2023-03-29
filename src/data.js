@@ -1,1 +1,1 @@
-console.log("data wking");
+export const playerCoords = []
