@@ -68,8 +68,14 @@ function displayFleetElement(shipSize) {
 displayFleetElement(shipSize);
 
 function dragItem() {
-    const src = document.querySelector(".item-container");    
+    const src = document.querySelector(".item-container");
+    // const srcChild = src.children;
     const target = document.querySelector(`.player.grid`);
+
+    // src.addEventListener("drag", (e) => {
+    //     let coso = handleItems(e, src);
+    //     console.log(coso)
+    // })
 
     src.addEventListener("dragstart", (e) => {
         src.style.background = "lightblue";
@@ -85,8 +91,20 @@ function dragItem() {
                     e.style.background = "red";
                 } 
             });
-
-        } else dragged.forEach(e => e.style.background = "green" );
+        
+        } else {
+            dragged.forEach(e => {
+                if (e.id == "selected") {
+                    for (let item of dragged) {
+                        item.style.background = "red";
+                    }
+                } 
+                else if (!dragged.some((e) => e.id == "selected")) {
+                    e.style.background = "green";
+                }
+            })
+        };
+    
 
     }, false);
 
@@ -101,7 +119,7 @@ function dragItem() {
     });
 
     target.addEventListener("drop", (e) => {
-        e.preventDefault();
+        // e.preventDefault();
         let ship = handleItems(e, target);
 
         if (ship.includes(null)) {
@@ -114,7 +132,6 @@ function dragItem() {
                 e.id = "selected";
             })
             shipSize--;
-            console.log(shipSize)
             if (shipSize == 0) src.remove();
             else if(shipSize < 3) displayFleetElement(2);
             else displayFleetElement(shipSize);
