@@ -81,7 +81,9 @@ function dragItem() {
         let dragged = handleItems(e, target);
         if (dragged.includes(null)) {
             dragged.forEach(e => {
-                if (e !== null) e.style.background = "red";
+                if (e !== null) {
+                    e.style.background = "red";
+                } 
             });
 
         } else dragged.forEach(e => e.style.background = "green" );
@@ -91,7 +93,11 @@ function dragItem() {
 
     target.addEventListener("dragleave", (e) => {
         let left = handleItems(e, target);
-        left.forEach(e => { if(e !== null) e.style.background = "white" });
+        left.forEach(e => {
+            if(e !== null) {
+                if (e.id !== "selected") e.style.background = "white"; 
+            }
+        });
     });
 
     target.addEventListener("drop", (e) => {
@@ -112,6 +118,8 @@ function dragItem() {
             if (shipSize == 0) src.remove();
             else if(shipSize < 3) displayFleetElement(2);
             else displayFleetElement(shipSize);
+            //trigger machine auto fleet selection.
+            //trigger match.
         }
     })
 
