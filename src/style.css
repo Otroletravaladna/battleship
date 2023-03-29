@@ -197,10 +197,3 @@ button:hover {
     box-sizing: content-box;
 }
 
-#selected {
-    background-color: lightblue;
-}
-
-#missplaced {
-    background-color: red;
-}
