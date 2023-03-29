@@ -65,35 +65,42 @@ function displayFleetElement() {
 displayFleetElement();
 
 function dragItem() {
-    let dragged;
-
     const src = document.querySelector(".item-container");    
-
+    const target = document.querySelector(`.player.grid`);
 
     src.addEventListener("dragstart", (e) => {
-        // src.id = "selected"
+        src.style.background = "lightblue";
         e.dataTransfer.setDragImage(src, 0, 0);
     })
 
-    const target = document.querySelector(`.player.grid`);
-
-
     target.addEventListener("dragover", (e) => {
         e.preventDefault();
+        let dragged = appendItem(e, target);
+        if (dragged.includes(null)) {
+            dragged.forEach(e => {
+                if (e !== null) e.style.background = "red";
+            });
+
+        } else dragged.forEach(e => e.style.background = "green" );
+        
     }, false);
 
-    target.addEventListener("dragenter", (e) => {
-        // e.target.classList.add("dragover");
-        // console.log(e.target);
-    })
 
     target.addEventListener("dragleave", (e) => {
-        // console.log("dragleave");
-    })
+        let left = appendItem(e, target);
+        left.forEach(e => { if(e !== null) e.style.background = "white" });
+    });
 
     target.addEventListener("drop", (e) => {
         e.preventDefault();
-        appendItem(e, target, src);
+        let ship = appendItem(e, target);
+
+        if (ship.includes(null)) {
+            ship.forEach(e => { 
+                if (e !== null) e.style.background = "white";
+            });
+
+        } else { ship.forEach(e =>  e.id = "selected" )}
     })
 
     function appendItem(e, target) {
@@ -101,18 +108,24 @@ function dragItem() {
         const targetx = Number(e.target.className.slice(1));
         const targety = e.target.className[0];
         let itemAxis = src.id;
+        let rowItems = [];
+        let columnItems = [];
 
         if (itemAxis == "row") {
             for (let i = 0; i < src.childElementCount; i++){
-                document.querySelector(`.${targety + (targetx + i)}`).id = "selected";
+                let item = document.querySelector(`.${targety + (targetx + i)}`);
+                rowItems.push(item);
             }
 
         } else {
             for (let i = 0; i < src.childElementCount; i++){
-                document.querySelector(`.${y[y.indexOf(targety) + i] +  targetx}`).id = "selected";
-                console.log(y.indexOf(targety), targetx)
+                let item = document.querySelector(`.${y[y.indexOf(targety) + i] +  targetx}`);
+                columnItems.push(item);
             }
         }
+
+        if (rowItems.length == 0) return columnItems; 
+        return rowItems;
     }
 }
 

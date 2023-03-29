@@ -200,3 +200,7 @@ button:hover {
 #selected {
     background-color: lightblue;
 }
+
+#missplaced {
+    background-color: red;
+}
