@@ -1,3 +1,5 @@
+let shipSize = 5;
+
 export function createGrids() {
     const container = document.querySelector(".game");
     const playerGrid = document.querySelector(".player");
@@ -29,11 +31,12 @@ export function displayPlayerName() {
     else nameDisplay.textContent = input.value;
 }
 
-function displayFleetElement() {
-    let container = document.querySelector(".item-container");
+function displayFleetElement(shipSize) {
+    const container = document.querySelector(".item-container");
+    container.textContent = "";
 
-    const ac = (container) => {
-        for(let i = 0; i < 5; i++) {
+    const generateShip = (container) => {
+        for(let i = 0; i < shipSize; i++) {
             let cell = document.createElement("div");
             cell.classList.add("fleet-item");
             container.appendChild(cell);
@@ -59,10 +62,10 @@ function displayFleetElement() {
     }
 
     changeAxis();
-    ac(container);
+    generateShip(container);
 }
 
-displayFleetElement();
+displayFleetElement(shipSize);
 
 function dragItem() {
     const src = document.querySelector(".item-container");    
@@ -75,35 +78,44 @@ function dragItem() {
 
     target.addEventListener("dragover", (e) => {
         e.preventDefault();
-        let dragged = appendItem(e, target);
+        let dragged = handleItems(e, target);
         if (dragged.includes(null)) {
             dragged.forEach(e => {
                 if (e !== null) e.style.background = "red";
             });
 
         } else dragged.forEach(e => e.style.background = "green" );
-        
+
     }, false);
 
 
     target.addEventListener("dragleave", (e) => {
-        let left = appendItem(e, target);
+        let left = handleItems(e, target);
         left.forEach(e => { if(e !== null) e.style.background = "white" });
     });
 
     target.addEventListener("drop", (e) => {
         e.preventDefault();
-        let ship = appendItem(e, target);
+        let ship = handleItems(e, target);
 
         if (ship.includes(null)) {
             ship.forEach(e => { 
                 if (e !== null) e.style.background = "white";
             });
 
-        } else { ship.forEach(e =>  e.id = "selected" )}
+        } else { 
+            ship.forEach(e => {
+                e.id = "selected";
+            })
+            shipSize--;
+            console.log(shipSize)
+            if (shipSize == 0) src.remove();
+            else if(shipSize < 3) displayFleetElement(2);
+            else displayFleetElement(shipSize);
+        }
     })
 
-    function appendItem(e, target) {
+    function handleItems(e, target) {
         const y = ['j', 'i', 'h', 'g', 'f', 'e', 'd', 'c', 'b', 'a'];
         const targetx = Number(e.target.className.slice(1));
         const targety = e.target.className[0];
