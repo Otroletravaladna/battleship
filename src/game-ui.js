@@ -129,7 +129,11 @@ function dragItem() {
             });
 
         } else if (ship.some((e) => e.id == "selected")) {
-            console.log(true);
+            ship.forEach(e => {
+                if (e.id == "selected") e.style.background = "green";
+                else e.style.background = "white";
+            })
+
         } else if (!ship.some((e) => e.id == "selected")) {
             ship.forEach(e => {e.id = "selected"})
             shipSize--;
