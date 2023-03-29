@@ -114,12 +114,13 @@ function dragItem() {
         left.forEach(e => {
             if(e !== null) {
                 if (e.id !== "selected") e.style.background = "white"; 
+                else if (e.id == "selected") e.style.background = "green";
             }
         });
     });
 
     target.addEventListener("drop", (e) => {
-        // e.preventDefault();
+        e.preventDefault();
         let ship = handleItems(e, target);
 
         if (ship.includes(null)) {
@@ -127,10 +128,10 @@ function dragItem() {
                 if (e !== null) e.style.background = "white";
             });
 
-        } else { 
-            ship.forEach(e => {
-                e.id = "selected";
-            })
+        } else if (ship.some((e) => e.id == "selected")) {
+            console.log(true);
+        } else if (!ship.some((e) => e.id == "selected")) {
+            ship.forEach(e => {e.id = "selected"})
             shipSize--;
             if (shipSize == 0) src.remove();
             else if(shipSize < 3) displayFleetElement(2);
