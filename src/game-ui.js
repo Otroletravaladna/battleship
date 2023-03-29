@@ -131,7 +131,6 @@ function dragItem() {
             else displayFleetElement(shipSize);
             data.playerCoords.push(ship.map(e => e.className));
         }
-        console.log(data.playerCoords);
     })
 
     function handleItems(e, target) {

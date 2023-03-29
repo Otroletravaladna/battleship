@@ -1,1 +1,1 @@
-export const playerCoords = []
+export const playerCoords = [];
