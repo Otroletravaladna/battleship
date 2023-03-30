@@ -6,6 +6,7 @@ export function getMachineFleet() {
     const random = () => Math.floor(Math.random() * 10);
     let axis = getAxis();
     let coords = random();
+    let item = [];
 
     function getAxis() {
         return random() % 2 == 0 ? "row" : "column";
@@ -15,12 +16,23 @@ export function getMachineFleet() {
         if (axis == "row") {
             
         } else {
-            if (coords < 5) coords += shipSize;
-            for (let i = shipSize; i > 0; i--) {
-                (y[coords - i] + x[coords]);
+            if (coords < 5){
+                for (let i = shipSize; i > 0; i--) {
+                    item.push(y[(coords + 5)- i] + x[coords]);
+                }
+            } else {
+                for (let i = shipSize; i > 0; i--) {
+                    item.push(y[coords - i] + x[coords]);
+                }
             }
         }
+        machineCoords.push(item);
     }
     
     getItem(shipSize);
+    console.log(machineCoords);
 }
+
+let machineCoords = [
+
+]
