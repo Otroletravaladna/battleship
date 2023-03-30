@@ -14,11 +14,20 @@ export function getMachineFleet() {
     
     const getItem = (shipSize) => {
         if (axis == "row") {
-            
+            if (coords < shipSize) {
+                for (let i = shipSize; i > 0; i--) {
+                    item.push(y[coords] + x[(coords + shipSize)- i]);
+                }
+            } else {
+                for (let i = shipSize; i > 0; i--) {
+                    item.push(y[coords] + x[coords- i], coords - i);
+                }
+            }
+
         } else {
             if (coords < 5){
                 for (let i = shipSize; i > 0; i--) {
-                    item.push(y[(coords + 5)- i] + x[coords]);
+                    item.push(y[(coords + shipSize)- i] + x[coords]);
                 }
             } else {
                 for (let i = shipSize; i > 0; i--) {
