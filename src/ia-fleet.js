@@ -20,7 +20,7 @@ export function getMachineFleet() {
                 }
             } else {
                 for (let i = shipSize; i > 0; i--) {
-                    item.push(y[coords] + x[coords- i], coords - i);
+                    item.push(y[coords] + x[coords- i]);
                 }
             }
 
@@ -36,11 +36,25 @@ export function getMachineFleet() {
             }
         }
         machineCoords.push(item);
+        // checkForVisited(item);
+        console.table(machineCoords);
     }
     
-    getItem(shipSize);
-    console.log(machineCoords);
+    if(shipSize == 0) return;
+    else if (shipSize < 3) getItem(2);
+    else getItem(shipSize);
+    shipSize--;
 }
+
+// export function checkForVisited(item) {
+//     console.log("push");
+
+//     item.forEach(e => {
+//         let test = e.map(x => e.includes(x));
+//         // if (!test.includes(true)) machineCoords.push(item);
+//     })
+//     console.table(machineCoords);
+// }
 
 let machineCoords = [
 
