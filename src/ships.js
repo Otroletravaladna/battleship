@@ -196,6 +196,14 @@ export function match(arrPlayer, arrMachine) {
     machineChoice();
 } 
 
+const playerCoords = [
+    ['i2', 'i3', 'i4', 'i5', 'i6'],
+    ['g6', 'g7', 'g8', 'g9'],
+    ['g2', 'f2', 'e2'],
+    ['e4', 'e5'],
+    ['d8', 'c8']
+]
+
 //fix the adjMoves to avoid making moves out of the table.
 //Create previous hit arr to 
 

@@ -7,7 +7,6 @@ export function createGrids() {
     const playerGrid = document.querySelector(".player");
     const machineGrid = document.querySelector(".machine");
 
-    // const y = ['j', 'i', 'h', 'g', 'f', 'e', 'd', 'c', 'b', 'a'];
     container.style.display = "grid";
 
     function displayGrid(parent) {
@@ -132,11 +131,10 @@ function dragItem() {
             else displayFleetElement(shipSize);
             data.playerCoords.push(ship.map(e => e.className));
         }
-        console.log(data.playerCoords);
+        // console.log(data.playerCoords);
     })
 
     function handleItems(e, target) {
-        // const y = ['j', 'i', 'h', 'g', 'f', 'e', 'd', 'c', 'b', 'a'];
         const targetx = Number(e.target.className.slice(1));
         const targety = e.target.className[0];
         let itemAxis = src.id;
