@@ -1,16 +1,17 @@
 import * as data from "./data";
 
 export let shipSize = 5;
+
 export function createGrids() {
     const container = document.querySelector(".game");
     const playerGrid = document.querySelector(".player");
     const machineGrid = document.querySelector(".machine");
 
-    const y = ['j', 'i', 'h', 'g', 'f', 'e', 'd', 'c', 'b', 'a'];
+    // const y = ['j', 'i', 'h', 'g', 'f', 'e', 'd', 'c', 'b', 'a'];
     container.style.display = "grid";
 
     function displayGrid(parent) {
-        y.forEach((item) => {
+        data.y.forEach((item) => {
             for (let i = 0; i < 10; i++) {
                 const cell = document.createElement("div");
                 cell.classList.add(item + (i +1));
@@ -131,10 +132,11 @@ function dragItem() {
             else displayFleetElement(shipSize);
             data.playerCoords.push(ship.map(e => e.className));
         }
+        console.log(data.playerCoords);
     })
 
     function handleItems(e, target) {
-        const y = ['j', 'i', 'h', 'g', 'f', 'e', 'd', 'c', 'b', 'a'];
+        // const y = ['j', 'i', 'h', 'g', 'f', 'e', 'd', 'c', 'b', 'a'];
         const targetx = Number(e.target.className.slice(1));
         const targety = e.target.className[0];
         let itemAxis = src.id;
@@ -149,7 +151,7 @@ function dragItem() {
 
         } else {
             for (let i = 0; i < src.childElementCount; i++){
-                let item = document.querySelector(`.${y[y.indexOf(targety) + i] +  targetx}`);
+                let item = document.querySelector(`.${data.y[data.y.indexOf(targety) + i] +  targetx}`);
                 columnItems.push(item);
             }
         }
