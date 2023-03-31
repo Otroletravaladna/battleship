@@ -41,11 +41,11 @@ export function getMachineFleet() {
     else if (shipSize == 5) getItem(5);
     else if (shipSize < 3) getItem(2);
     else getItem(shipSize);
+
     return item;
 }
 
 export function trigger() {
-    let n = shipSize;
     let item = getMachineFleet();
 
     if (shipSize == 5) {
@@ -55,20 +55,13 @@ export function trigger() {
     else {
         if (test(machineCoords, item) == false) {
             if (shipSize == 0) return;
-            else if (shipSize < 3) {
-                machineCoords.push(item);
-                shipSize--;
-                console.log(shipSize);
-            }
             else {
                 machineCoords.push(item)
                 shipSize--;
             }
         }
-        // else alert(item);
     }
 
-    // console.table(machineCoords);
 }
 
 function test(arr, item) {
