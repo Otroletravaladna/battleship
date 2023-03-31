@@ -13,5 +13,4 @@ document.querySelector(".change-axis").addEventListener("click", () => {
 
 window.addEventListener("click", () => {
     iaFleet.trigger();
-    console.log(iaFleet.machineCoords);
 })

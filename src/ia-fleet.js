@@ -37,8 +37,7 @@ export function getMachineFleet() {
         }
     }
 
-    if (shipSize == 0) return;
-    else if (shipSize == 5) getItem(5);
+    if (shipSize == 5) getItem(5);
     else if (shipSize < 3) getItem(2);
     else getItem(shipSize);
 
@@ -61,7 +60,6 @@ export function trigger() {
             }
         }
     }
-
 }
 
 function test(arr, item) {
