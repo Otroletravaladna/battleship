@@ -2,13 +2,11 @@ import { y, x } from "./data";
 
 export let shipSize = 5;
 
-export function getMachineFleet() {
+export function getMachineFleet(n) {
     const random = () => Math.floor(Math.random() * 10);
     let axis = getAxis();
     let coords = random();
     let item = [];
-    console.log(shipSize);
-
 
     function getAxis() {
         return random() % 2 == 0 ? "row" : "column";
@@ -38,33 +36,39 @@ export function getMachineFleet() {
             }
         }
     }
+
+    getItem(n);
+    return item;
+}
+
+export function trigger() {
+    let item = getMachineFleet(shipSize);
+
     if (shipSize == 5) {
         machineCoords.push(item);
-        // shipSize--;
-
-    }else if(checkForVisited(item) === false && shipSize > 0) {
-        machineCoords.push(item);
-        // shipSize--;
-        // console.table(machineCoords);
+        shipSize--;
     }
-    
-    if (shipSize == 0) return;
-    else if (shipSize < 3) getItem(2);
-    else getItem(shipSize);
+    else {
+        if (test(machineCoords, item) == false) {
+            machineCoords.push(item)
+            shipSize--;
+        }
+        else alert(item);
+        console.log(test(machineCoords, item));
+    }
+
     console.table(machineCoords);
-    shipSize--;
 }
 
-export function checkForVisited(item) {
-    let test;
-    for (let arr of machineCoords) {
-        // console.table(arr);
-        test = arr.some(x => item.includes(x))
-        console.log(arr.some(x => item.includes(x)));
-    }
-    return test == true ? true : false;
+function test(arr, item) {
+    let res = [];
+    arr.forEach(e => {
+        if (e.some(x => item.includes(x))) res.push(true);
+    })
+
+    return res.includes(true);
 }
 
-let machineCoords = [
+export let machineCoords = [
 
 ]
