@@ -1,8 +1,8 @@
 import { y, x, machineCoords } from "./data";
 
-export let shipSize = 5;
+let shipSize = 5;
 
-export function createShip() {
+function createShip() {
     const random = () => Math.floor(Math.random() * 10);
     let axis = getAxis();
     let coords = random();
@@ -53,7 +53,7 @@ function test(arr, item) {
     return res.includes(true);
 }
 
-export function appendShip() {
+function appendShip() {
     let item = createShip();
 
     if (shipSize == 5) {
