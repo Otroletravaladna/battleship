@@ -5,7 +5,6 @@ export function Ships(type, size, hits, sink) {
     this.size = size; 
     this.hits = hits;
     this.sink = sink;
-
     
     this.isSunk = () => {
         if (this.hits == this.size) this.sink = true;
@@ -34,7 +33,7 @@ export function Gameboard(ship, coords, hit) {
 
     this.reportSink = () => {
         this.ship.isSunk();
-        if (this.ship.sink == true)  return console.log(`This ${this.ship} is wrecked!`);
+        if (this.ship.sink == true)  return console.log(`This ${this.ship.type} is wrecked!`);
         return console.log(`This ship still can fight!`);
     }
     
