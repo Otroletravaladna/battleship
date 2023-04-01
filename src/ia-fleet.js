@@ -1,4 +1,4 @@
-import { y, x } from "./data";
+import { y, x, machineCoords } from "./data";
 
 export let shipSize = 5;
 
@@ -78,6 +78,3 @@ export function getFleet() {
     }
 }
 
-export let machineCoords = [
-
-]
