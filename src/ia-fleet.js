@@ -72,6 +72,11 @@ export function appendShip() {
     console.table(machineCoords);
 }
 
+export function getFleet() {
+    while (shipSize > 0) {
+        appendShip();
+    }
+}
 
 export let machineCoords = [
 

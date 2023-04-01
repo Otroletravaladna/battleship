@@ -12,5 +12,5 @@ document.querySelector(".change-axis").addEventListener("click", () => {
 })
 
 window.addEventListener("click", () => {
-    iaFleet.appendShip();
+    iaFleet.getFleet();
 })
