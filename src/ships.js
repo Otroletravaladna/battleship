@@ -195,10 +195,11 @@ export function match(arrPlayer, arrMachine) {
         return lastHit;
     };
 
+    console.log("working")
     machineChoice();
 } 
 
-// const playerCoords = [
+// const machineCoords = [
 //     ['i2', 'i3', 'i4', 'i5', 'i6'],
 //     ['g6', 'g7', 'g8', 'g9'],
 //     ['g2', 'f2', 'e2'],
@@ -220,4 +221,4 @@ export function match(arrPlayer, arrMachine) {
 //the selector of of random choice or adjacentchoice must take as parameter the
 //lastHit.state.
 
-console.log(match(playerCoords))
+// console.log(match(playerCoords))

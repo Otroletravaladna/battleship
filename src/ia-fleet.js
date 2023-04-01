@@ -1,4 +1,5 @@
-import { y, x, machineCoords } from "./data";
+import { y, x, machineCoords, playerCoords } from "./data";
+import { match } from "./ships";
 
 let shipSize = 5;
 
@@ -73,5 +74,6 @@ export function getFleet() {
     while (shipSize > 0) {
         appendShip();
     }
+    match(playerCoords);
 }
 
