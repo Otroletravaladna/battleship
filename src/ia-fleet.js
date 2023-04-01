@@ -62,11 +62,8 @@ function appendShip() {
     }
     else {
         if (test(machineCoords, item) == false) {
-            if (shipSize == 0) return;
-            else {
-                machineCoords.push(item)
-                shipSize--;
-            }
+            machineCoords.push(item)
+            shipSize--;
         }
     }
     console.table(machineCoords);
