@@ -73,7 +73,7 @@ function dragItem() {
 
     target.addEventListener("dragover", (e) => {
         e.preventDefault();
-        let dragged = handleItems(e, target);
+        let dragged = handleItems(e);
         if (dragged.includes(null)) {
             dragged.forEach(e => {
                 if (e !== null) {
@@ -98,8 +98,8 @@ function dragItem() {
 
 
     target.addEventListener("dragleave", (e) => {
-        let left = handleItems(e, target);
-        left.forEach(e => {
+        let abandoned = handleItems(e);
+        abandoned.forEach(e => {
             if(e !== null) {
                 if (e.id !== "selected") e.style.background = "white"; 
                 else if (e.id == "selected") e.style.background = "green";
@@ -109,7 +109,7 @@ function dragItem() {
 
     target.addEventListener("drop", (e) => {
         e.preventDefault();
-        let ship = handleItems(e, target);
+        let ship = handleItems(e);
 
         if (ship.includes(null)) {
             ship.forEach(e => { 
@@ -123,18 +123,16 @@ function dragItem() {
             })
 
         } else if (!ship.some((e) => e.id == "selected")) {
-            ship.forEach(e => {e.id = "selected";
-        })
+            ship.forEach(e => e.id = "selected");
             shipSize--;
             if (shipSize == 0) src.remove();
             else if(shipSize < 3) displayFleetElement(2);
             else displayFleetElement(shipSize);
             data.playerCoords.push(ship.map(e => e.className));
         }
-        // console.log(data.playerCoords);
     })
 
-    function handleItems(e, target) {
+    function handleItems(e) {
         const targetx = Number(e.target.className.slice(1));
         const targety = e.target.className[0];
         let itemAxis = src.id;
