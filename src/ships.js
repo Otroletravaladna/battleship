@@ -1,4 +1,4 @@
-import { playerCoords, machineCoords, y, x } from "./data";
+import {  machineCoords, y, x } from "./data";
 
 export function Ships(type, size, hits, sink) {
     this.type = type;
@@ -6,9 +6,6 @@ export function Ships(type, size, hits, sink) {
     this.hits = hits;
     this.sink = sink;
 
-    // this.hit = () => { 
-    //     hits++;
-    // };
     
     this.isSunk = () => {
         if (this.hits == this.size) this.sink = true;
@@ -28,18 +25,17 @@ export function Gameboard(ship, coords, hit) {
     this.receiveAttack = (hit) => {
         if (this.coords.some(x => x == hit)){
             this.ship.hits += 1;
-            console.log("Hit!")
+            // console.log("Hit!")
             return true;
         }
-        console.log("Miss!")
+        // console.log("Miss!")
         return false;
     };
 
     this.reportSink = () => {
         this.ship.isSunk();
-        if (this.ship.sink == true)  return console.log(`This ship is wrecked!`);
-        return console.log("no");
-        // return console.log(`This ship still can fight!`);
+        if (this.ship.sink == true)  return console.log(`This ${this.ship} is wrecked!`);
+        return console.log(`This ship still can fight!`);
     }
     
 }
@@ -74,7 +70,8 @@ export function match(arrPlayer, arrMachine) {
                 hit = true;
             }
         }
-        console.log(hit);
+        if (hit == true) console.log("hit!");
+        else console.log("Miss!");
         return hit;      
     }
 
@@ -191,21 +188,24 @@ export function match(arrPlayer, arrMachine) {
                 return true;
             }
         }
-            
+        
+        console.log(playerFleet);
         return lastHit;
     };
 
-    console.log("working")
+    attack(playerFleet, "e5");
+    attack(playerFleet, "e5");
+
     machineChoice();
 } 
 
-// const machineCoords = [
-//     ['i2', 'i3', 'i4', 'i5', 'i6'],
-//     ['g6', 'g7', 'g8', 'g9'],
-//     ['g2', 'f2', 'e2'],
-//     ['e4', 'e5'],
-//     ['d8', 'c8']
-// ]
+const playerCoords = [
+    ['i2', 'i3', 'i4', 'i5', 'i6'],
+    ['g6', 'g7', 'g8', 'g9'],
+    ['g2', 'f2', 'e2'],
+    ['e4', 'e5'],
+    ['d8', 'c8']
+]
 
 //fix the adjMoves to avoid making moves out of the table.
 //Create previous hit arr to 
@@ -221,4 +221,4 @@ export function match(arrPlayer, arrMachine) {
 //the selector of of random choice or adjacentchoice must take as parameter the
 //lastHit.state.
 
-// console.log(match(playerCoords))
+console.log(match(playerCoords))

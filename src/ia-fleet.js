@@ -74,6 +74,6 @@ export function getFleet() {
     while (shipSize > 0) {
         appendShip();
     }
-    match(playerCoords);
+    // match(playerCoords);
 }
 
