@@ -2,7 +2,7 @@ import { y, x } from "./data";
 
 export let shipSize = 5;
 
-export function getMachineFleet() {
+export function createShip() {
     const random = () => Math.floor(Math.random() * 10);
     let axis = getAxis();
     let coords = random();
@@ -44,8 +44,17 @@ export function getMachineFleet() {
     return item;
 }
 
-export function trigger() {
-    let item = getMachineFleet();
+function test(arr, item) {
+    let res = [];
+    arr.forEach(e => {
+        if (e.some(x => item.includes(x))) res.push(true);
+    })
+
+    return res.includes(true);
+}
+
+export function appendShip() {
+    let item = createShip();
 
     if (shipSize == 5) {
         machineCoords.push(item);
@@ -60,16 +69,9 @@ export function trigger() {
             }
         }
     }
+    console.table(machineCoords);
 }
 
-function test(arr, item) {
-    let res = [];
-    arr.forEach(e => {
-        if (e.some(x => item.includes(x))) res.push(true);
-    })
-
-    return res.includes(true);
-}
 
 export let machineCoords = [
 
