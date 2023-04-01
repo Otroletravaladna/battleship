@@ -1,4 +1,5 @@
 import * as data from "./data";
+import { getFleet } from "./ia-fleet";
 
 export let shipSize = 5;
 
@@ -126,7 +127,10 @@ function dragItem() {
             ship.forEach(e => {e.id = "selected";
         })
             shipSize--;
-            if (shipSize == 0) src.remove();
+            if (shipSize == 0) {
+                src.remove();
+                getFleet();
+            }
             else if(shipSize < 3) displayFleetElement(2);
             else displayFleetElement(shipSize);
             data.playerCoords.push(ship.map(e => e.className));
