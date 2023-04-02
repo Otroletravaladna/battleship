@@ -128,6 +128,7 @@ function dragItem() {
         })
             shipSize--;
             if (shipSize == 0) {
+                data.playerCoords.push(ship.map(e => e.className));
                 getFleet();
                 src.remove();
             }
@@ -135,7 +136,7 @@ function dragItem() {
             else displayFleetElement(shipSize);
             data.playerCoords.push(ship.map(e => e.className));
         }
-        // console.log(data.playerCoords);
+        console.log(shipSize, data.playerCoords);
     })
 
     function handleItems(e, target) {

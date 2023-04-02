@@ -192,8 +192,8 @@ export function match(arrPlayer, arrMachine) {
     
     // attack(playerFleet, "e4");
     // attack(playerFleet, "e5");
-    // console.log(arrMachine[4]);
-    console.log(machineFleet);
+    console.log(arrPlayer[4]);
+    // console.log(machineFleet);
 
     machineChoice();
 } 
