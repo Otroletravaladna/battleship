@@ -1,5 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
 
+@font-face {
+    font-family: 'ds-digitalbold';
+    src: url('./fonts/ds-digib-webfont.woff2') format('woff2'),
+         url('./fonts/ds-digib-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
 :root {
     --font: 'Orbitron', sans-serif;
 }
@@ -218,4 +227,5 @@ button:hover {
     width: calc(100% - 2rem);
     height: calc(100% - 2rem);
     border-radius: 1rem;
+    color: white;
 }
