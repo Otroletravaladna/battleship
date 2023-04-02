@@ -128,8 +128,8 @@ function dragItem() {
         })
             shipSize--;
             if (shipSize == 0) {
-                src.remove();
                 getFleet();
+                src.remove();
             }
             else if(shipSize < 3) displayFleetElement(2);
             else displayFleetElement(shipSize);

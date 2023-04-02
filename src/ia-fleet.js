@@ -67,13 +67,13 @@ function appendShip() {
             shipSize--;
         }
     }
-    console.table(machineCoords);
+    // console.table(machineCoords);
 }
 
 export function getFleet() {
     while (shipSize > 0) {
         appendShip();
     }
-    // match(playerCoords);
+    match(playerCoords, machineCoords);
 }
 
