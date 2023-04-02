@@ -11,6 +11,3 @@ document.querySelector(".change-axis").addEventListener("click", () => {
     game.changeAxis();
 })
 
-window.addEventListener("click", () => {
-    iaFleet.getFleet();
-})

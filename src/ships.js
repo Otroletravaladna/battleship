@@ -1,12 +1,10 @@
+import {  machineCoords, y, x } from "./data";
+
 export function Ships(type, size, hits, sink) {
     this.type = type;
     this.size = size; 
     this.hits = hits;
     this.sink = sink;
-
-    // this.hit = () => { 
-    //     hits++;
-    // };
     
     this.isSunk = () => {
         if (this.hits == this.size) this.sink = true;
@@ -26,18 +24,17 @@ export function Gameboard(ship, coords, hit) {
     this.receiveAttack = (hit) => {
         if (this.coords.some(x => x == hit)){
             this.ship.hits += 1;
-            console.log("Hit!")
+            // console.log("Hit!")
             return true;
         }
-        console.log("Miss!")
+        // console.log("Miss!")
         return false;
     };
 
     this.reportSink = () => {
         this.ship.isSunk();
-        if (this.ship.sink == true)  return console.log(`This ship is wrecked!`);
-        return console.log("no");
-        // return console.log(`This ship still can fight!`);
+        if (this.ship.sink == true)  return console.log(`This ${this.ship.type} is wrecked!`);
+        return console.log(`This ship still can fight!`);
     }
     
 }
@@ -51,31 +48,15 @@ export function match(arrPlayer, arrMachine) {
         cr: new Gameboard("CR", arrPlayer[2]),
         dtOne: new Gameboard("DT", arrPlayer[3]),
         dtTwo: new Gameboard("DT", arrPlayer[4]),
-
     }
 
-    // const machineFleet = {
-    //     ac: new Gameboard("AC", arrMachine[0]),
-    //     bs: new Gameboard("BS", arrMachine[1]),
-    //     cr: new Gameboard("CR", arrMachine[2]),
-    //     dtOne: new Gameboard("DT", arrMachine[3]),
-    //     dtTwo: new Gameboard("DT", arrMachine[4]),
-
-    // }
-    
-
-    function attack(enemy, coords){
-        let hit = false;
-        for (let [key, value] of Object.entries(enemy)){
-            if(value.receiveAttack(coords)) {
-                value.reportSink()
-                hit = true;
-            }
-        }
-        console.log(hit);
-        return hit;      
+    const machineFleet = {
+        ac: new Gameboard("AC", arrMachine[0]),
+        bs: new Gameboard("BS", arrMachine[1]),
+        cr: new Gameboard("CR", arrMachine[2]),
+        dtOne: new Gameboard("DT", arrMachine[3]),
+        dtTwo: new Gameboard("DT", arrMachine[4]),
     }
-
 
     const machineChoice = () => {
         
@@ -189,20 +170,43 @@ export function match(arrPlayer, arrMachine) {
                 return true;
             }
         }
-            
+        
         return lastHit;
     };
-
-    machineChoice();
+    
+    function triggerPlayerAttack() {
+        document.querySelector(".machine").addEventListener("click",
+        (e) => {
+            attack(machineFleet, e.target.className);
+        });
+    }
+    
+    triggerPlayerAttack();
+    // machineChoice()
 } 
 
-const playerCoords = [
-    ['i2', 'i3', 'i4', 'i5', 'i6'],
-    ['g6', 'g7', 'g8', 'g9'],
-    ['g2', 'f2', 'e2'],
-    ['e4', 'e5'],
-    ['d8', 'c8']
-]
+
+function attack(enemy, coords){
+    let hit = false;
+    for (let [key, value] of Object.entries(enemy)){
+        if(value.receiveAttack(coords)) {
+            console.log("hit!")
+            value.reportSink()
+            hit = true;
+        }
+    }
+    if (hit!== true) console.log("Miss!");
+    
+    return hit;      
+}
+
+// const playerCoords = [
+//     ['i2', 'i3', 'i4', 'i5', 'i6'],
+//     ['g6', 'g7', 'g8', 'g9'],
+//     ['g2', 'f2', 'e2'],
+//     ['e4', 'e5'],
+//     ['d8', 'c8']
+// ]
 
 //fix the adjMoves to avoid making moves out of the table.
 //Create previous hit arr to 
@@ -218,4 +222,4 @@ const playerCoords = [
 //the selector of of random choice or adjacentchoice must take as parameter the
 //lastHit.state.
 
-console.log(match(playerCoords))
+// console.log(match(playerCoords, machineCoords))
