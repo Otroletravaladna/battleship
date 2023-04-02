@@ -40,7 +40,6 @@ export function Gameboard(ship, coords, hit) {
 }
 
 export function match(arrPlayer, arrMachine) {
-    let count;
 
     const playerFleet = {
         ac: new Gameboard("AC", arrPlayer[0]),
@@ -62,6 +61,7 @@ export function match(arrPlayer, arrMachine) {
         
         function selectAttack(lastHit) {
             if (!lastHit.state) {
+                console.log("to random");
                 randomChoice(x, y);
                 visited.push(y[lastHit.coordsy] + x[lastHit.coordsx]);
             }else {
@@ -85,12 +85,13 @@ export function match(arrPlayer, arrMachine) {
 
         let randomChoice = (x, y) =>  {
             let random = () => (Math.floor(Math.random() * 10));
-            let coords = y + x;
             let randomy = random();
             let randomx = random();
             visited.push(y[randomy] + x[randomx])
+            console.log(visited);
 
             if(attack(playerFleet, (y[randomy] + x[randomx]))){
+                console.log("hit to player");
                 lastHit.coordsy = randomy;
                 lastHit.coordsx = randomx;
                 lastHit.state = true;
@@ -171,20 +172,20 @@ export function match(arrPlayer, arrMachine) {
             }
         }
         
-        return lastHit;
+        selectAttack(lastHit);
     };
-    
+
     function triggerPlayerAttack() {
         document.querySelector(".machine").addEventListener("click",
         (e) => {
             attack(machineFleet, e.target.className);
+            machineChoice()
         });
     }
     
     triggerPlayerAttack();
-    // machineChoice()
+    console.log(playerFleet);
 } 
-
 
 function attack(enemy, coords){
     let hit = false;
