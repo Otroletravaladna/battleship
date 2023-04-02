@@ -1,4 +1,4 @@
-import * as data from "./data";
+import { playerCoords, y, x } from "./data";
 import { getFleet } from "./ia-fleet";
 
 export let shipSize = 5;
@@ -11,7 +11,7 @@ export function createGrids() {
     container.style.display = "grid";
 
     function displayGrid(parent) {
-        data.y.forEach((item) => {
+        y.forEach((item) => {
             for (let i = 0; i < 10; i++) {
                 const cell = document.createElement("div");
                 cell.classList.add(item + (i +1));
@@ -128,15 +128,14 @@ function dragItem() {
         })
             shipSize--;
             if (shipSize == 0) {
-                data.playerCoords.push(ship.map(e => e.className));
+                playerCoords.push(ship.map(e => e.className));
                 getFleet();
                 src.remove();
             }
             else if(shipSize < 3) displayFleetElement(2);
             else displayFleetElement(shipSize);
-            data.playerCoords.push(ship.map(e => e.className));
+            playerCoords.push(ship.map(e => e.className));
         }
-        console.log(shipSize, data.playerCoords);
     })
 
     function handleItems(e, target) {
@@ -154,7 +153,7 @@ function dragItem() {
 
         } else {
             for (let i = 0; i < src.childElementCount; i++){
-                let item = document.querySelector(`.${data.y[data.y.indexOf(targety) + i] +  targetx}`);
+                let item = document.querySelector(`.${y[y.indexOf(targety) + i] +  targetx}`);
                 columnItems.push(item);
             }
         }
