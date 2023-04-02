@@ -57,22 +57,6 @@ export function match(arrPlayer, arrMachine) {
         dtOne: new Gameboard("DT", arrMachine[3]),
         dtTwo: new Gameboard("DT", arrMachine[4]),
     }
-    
-
-    function attack(enemy, coords){
-        let hit = false;
-        for (let [key, value] of Object.entries(enemy)){
-            if(value.receiveAttack(coords)) {
-                console.log("hit!")
-                value.reportSink()
-                hit = true;
-            }
-        }
-        if (hit!== true) console.log("Miss!");
-        
-        return hit;      
-    }
-
 
     const machineChoice = () => {
         
@@ -190,13 +174,31 @@ export function match(arrPlayer, arrMachine) {
         return lastHit;
     };
     
-    // attack(playerFleet, "e4");
-    // attack(playerFleet, "e5");
-    console.log(arrPlayer[4]);
-    // console.log(machineFleet);
-
-    machineChoice();
+    function triggerPlayerAttack() {
+        document.querySelector(".machine").addEventListener("click",
+        (e) => {
+            attack(machineFleet, e.target.className);
+        });
+    }
+    
+    triggerPlayerAttack();
+    // machineChoice()
 } 
+
+
+function attack(enemy, coords){
+    let hit = false;
+    for (let [key, value] of Object.entries(enemy)){
+        if(value.receiveAttack(coords)) {
+            console.log("hit!")
+            value.reportSink()
+            hit = true;
+        }
+    }
+    if (hit!== true) console.log("Miss!");
+    
+    return hit;      
+}
 
 // const playerCoords = [
 //     ['i2', 'i3', 'i4', 'i5', 'i6'],
