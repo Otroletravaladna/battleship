@@ -1,4 +1,5 @@
 import {  machineCoords, y, x } from "./data";
+import { displayMessage, displayShipState } from "./textboard";
 
 export function Ships(type, size, hits, sink) {
     this.type = type;
@@ -33,8 +34,8 @@ export function Gameboard(ship, coords, hit) {
 
     this.reportSink = () => {
         this.ship.isSunk();
-        if (this.ship.sink == true)  return console.log(`This ${this.ship.type} is wrecked!`);
-        return console.log(`This ship still can fight!`);
+        if (this.ship.sink == true)  return displayShipState(`This ${this.ship.type} is wrecked!`);
+        return displayShipState(`This ship still can fight!`);
     }
     
 }
