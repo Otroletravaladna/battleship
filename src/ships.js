@@ -1,5 +1,5 @@
 import {  machineCoords, y, x } from "./data";
-import { displayMessage, displayShipState } from "./textboard";
+import { displayHitState, displayMessage, displayShipState } from "./textboard";
 
 export function Ships(type, size, hits, sink) {
     this.type = type;
@@ -35,7 +35,7 @@ export function Gameboard(ship, coords, hit) {
     this.reportSink = () => {
         this.ship.isSunk();
         if (this.ship.sink == true)  return displayShipState(`This ${this.ship.type} is wrecked!`);
-        return displayShipState(`This ship still can fight!`);
+        return displayShipState(`But this ship still can fight!`);
     }
     
 }
@@ -93,7 +93,8 @@ export function match(arrPlayer, arrMachine) {
             visited.push(y[randomy] + x[randomx])
 
             if(attack(playerFleet, (y[randomy] + x[randomx]))){
-                console.log(`Hit to player at ${y[randomy] + x[randomx]}`)
+                console.log(`Hit to player at ${y[randomy] + x[randomx]}`);
+                displayHitState(`Player has been hit!`);
                 lastHit.coordsy = randomy;
                 lastHit.coordsx = randomx;
                 lastHit.state = true;
@@ -181,7 +182,9 @@ export function match(arrPlayer, arrMachine) {
     function triggerPlayerAttack() {
         document.querySelector(".machine").addEventListener("click",
         (e) => {
-            attack(machineFleet, e.target.className);
+            if (attack(machineFleet, e.target.className)) {
+                displayHitState(`Player hit machine fleet`);
+            } else displayHitState(`Player Miss!`)
             machineChoice();
         });
     }
