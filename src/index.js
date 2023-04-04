@@ -12,15 +12,15 @@ document.querySelector(".change-axis").addEventListener("click", () => {
     game.changeAxis();
 })
 
-export function makeMove() {
-    document.querySelector(".machine").addEventListener("click", e => {
-        trigger(e);
-    });
-}
+// export function makeMove() {
+//     document.querySelector(".machine").addEventListener("click", e => {
+//         trigger(e);
+//     });
+// }
 
-export const trigger = throttle(e => {
-    ships.match(data.playerCoords, data.machineCoords, e);
-})
+// export const trigger = throttle(e => {
+//     ships.match(data.playerCoords, data.machineCoords, e);
+// })
 
 export function throttle(cb, delay = 4000) {
     let fired = false;

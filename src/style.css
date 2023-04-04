@@ -228,4 +228,16 @@ button:hover {
     height: calc(100% - 2rem);
     border-radius: 1rem;
     color: white;
+    display: grid;
+}
+
+.textboard > h2 {
+    text-align: center;
+    font-family: 'ds-digitalbold';
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+.msg {
+    margin-top: 0;
 }
