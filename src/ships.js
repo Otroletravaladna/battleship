@@ -40,7 +40,7 @@ export function Gameboard(ship, coords, hit) {
     
 }
 
-export function match(arrPlayer, arrMachine) {
+export function match(arrPlayer, arrMachine, e) {
     let count;
 
     const playerFleet = {
@@ -178,19 +178,20 @@ export function match(arrPlayer, arrMachine) {
         selectAttack(lastHit);
         return lastHit;
     };
+
     
-    function triggerPlayerAttack() {
-        document.querySelector(".machine").addEventListener("click",
-        (e) => {
-            if (attack(machineFleet, e.target.className)) {
-                displayHitState(`Player hit machine fleet`);
-            } else displayHitState(`Player Miss!`)
-            machineChoice();
-        });
+    function triggerPlayerAttack(e) {
+        console.log(e.target);
+        if (attack(machineFleet, e.target.className)) {
+            displayHitState(`Player hit machine fleet`);
+        } else displayHitState(`Player Miss!`)
+        machineChoice();
     }
-    
-    triggerPlayerAttack();
-    // machineChoice()
+
+
+    // document.querySelector(".machine").addEventListener()
+
+    triggerPlayerAttack(e);
 } 
 
 
@@ -203,7 +204,7 @@ function attack(enemy, coords){
             hit = true;
         }
     }
-    if (hit!== true) console.log("Miss!");
+    if (hit !== true) console.log("Miss!");
     
     return hit;      
 }

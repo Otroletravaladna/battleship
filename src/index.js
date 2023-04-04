@@ -12,3 +12,25 @@ document.querySelector(".change-axis").addEventListener("click", () => {
     game.changeAxis();
 })
 
+export function makeMove() {
+    document.querySelector(".machine").addEventListener("click", e => {
+        trigger(e);
+    });
+}
+
+const trigger = throttle(e => {
+    ships.match(data.playerCoords, data.machineCoords, e);
+})
+
+function throttle(cb, delay = 2000) {
+    let fired = false;
+
+    return (...args) => {
+        if (fired) return;
+        cb(...args)
+        fired = true;
+        setTimeout(() => {
+            fired = false;
+        }, delay);
+    }
+}
