@@ -241,3 +241,8 @@ button:hover {
 .msg {
     margin-top: 0;
 }
+
+#visited {
+    background: red;
+    cursor: not-allowed;
+}

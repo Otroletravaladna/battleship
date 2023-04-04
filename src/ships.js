@@ -26,14 +26,12 @@ export function Gameboard(ship, coords, hit) {
     this.receiveAttack = (hit) => {
         if (this.coords.some(x => x == hit)){
             this.ship.hits++;
-            // console.log(this);
             return true;
         }
         return false;
     };
 
     this.reportSink = () => {
-        // this.ship.isSunk();
         if (this.ship.isSunk()) return displayShipState(`This ${this.ship.type} is wrecked!`);
         else return displayShipState(`But this ship still can fight!`);
     }
@@ -78,7 +76,6 @@ export function match(arrPlayer, arrMachine) {
         let x = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
         let visited = [];
 
-        //try exporting to exec adjacent
         const lastHit = {
             coordsy: null, 
             coordsx: null, 
@@ -191,6 +188,7 @@ export function match(arrPlayer, arrMachine) {
 
     function makeMove() {
         document.querySelector(".machine").addEventListener("click", e => {
+            e.target.id = "visited";
             trigger(e);
         });
     }
@@ -208,7 +206,6 @@ function attack(enemy, coords){
     for (let [key, value] of Object.entries(enemy)){
         if(value.receiveAttack(coords)) {
             console.log("hit!")
-            // value.ship.hits++;
             value.reportSink()
             hit = true;
             console.log(value);
