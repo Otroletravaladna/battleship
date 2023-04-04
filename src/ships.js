@@ -188,13 +188,13 @@ export function match(arrPlayer, arrMachine) {
 
     function makeMove() {
         document.querySelector(".machine").addEventListener("click", e => {
-            e.target.id = "visited";
             trigger(e);
         });
     }
     
     const trigger = throttle(e => {
         triggerPlayerAttack(e);
+        e.target.id = "visited";
     })
 
     makeMove();
