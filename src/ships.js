@@ -1,5 +1,6 @@
 import {  machineCoords, y, x } from "./data";
 import { displayHitState, displayMessage, displayShipState } from "./textboard";
+import { throttle } from "./index";
 
 export function Ships(type, size, hits, sink) {
     this.type = type;
@@ -8,7 +9,7 @@ export function Ships(type, size, hits, sink) {
     this.sink = sink;
     
     this.isSunk = () => {
-        if (this.hits == this.size) this.sink = true;
+        if (this.hits == this.size) return true;
     };
 }
 
@@ -24,23 +25,22 @@ export function Gameboard(ship, coords, hit) {
 
     this.receiveAttack = (hit) => {
         if (this.coords.some(x => x == hit)){
-            this.ship.hits += 1;
+            this.ship.hits++;
+            // console.log(this);
             return true;
         }
         return false;
     };
 
     this.reportSink = () => {
-        console.log(this);
         // this.ship.isSunk();
-        // if (this.ship.sink == true)  return displayShipState(`This ${this.ship.type} is wrecked!`);
-        if (this.ship.isSunk())  return displayShipState(`This ${this.ship.type} is wrecked!`);
+        if (this.ship.isSunk()) return displayShipState(`This ${this.ship.type} is wrecked!`);
         else return displayShipState(`But this ship still can fight!`);
     }
     
 }
 
-export function match(arrPlayer, arrMachine, e) {
+export function match(arrPlayer, arrMachine) {
     let count;
 
     const playerFleet = {
@@ -189,7 +189,17 @@ export function match(arrPlayer, arrMachine, e) {
     }
 
 
-    triggerPlayerAttack(e);
+    function makeMove() {
+        document.querySelector(".machine").addEventListener("click", e => {
+            trigger(e);
+        });
+    }
+    
+    const trigger = throttle(e => {
+        triggerPlayerAttack(e);
+    })
+
+    makeMove();
 } 
 
 
@@ -198,8 +208,10 @@ function attack(enemy, coords){
     for (let [key, value] of Object.entries(enemy)){
         if(value.receiveAttack(coords)) {
             console.log("hit!")
+            // value.ship.hits++;
             value.reportSink()
             hit = true;
+            console.log(value);
         }
     }
     if (hit !== true) console.log("Miss!");

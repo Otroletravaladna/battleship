@@ -18,11 +18,11 @@ export function makeMove() {
     });
 }
 
-const trigger = throttle(e => {
+export const trigger = throttle(e => {
     ships.match(data.playerCoords, data.machineCoords, e);
 })
 
-function throttle(cb, delay = 4000) {
+export function throttle(cb, delay = 4000) {
     let fired = false;
 
     return (...args) => {
