@@ -2,6 +2,7 @@ const state = document.querySelector(".msg");
 const hit = document.querySelector(".hit");
 
 
+
 export function displayShipState(msg) {
     state.textContent = msg.toUpperCase();
     setTimeout(() => {
@@ -15,3 +16,4 @@ export function displayHitState(msg) {
         hit.textContent = "";
     }, 1200);
 }
+
