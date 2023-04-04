@@ -181,7 +181,13 @@ export function match(arrPlayer, arrMachine) {
         console.log(e.target);
         if (attack(machineFleet, e.target.className)) {
             displayHitState(`Player hit machine fleet`);
-        } else displayHitState(`Player Miss!`)
+            e.target.id = "hit";
+
+        } else {
+            displayHitState(`Player Miss!`);
+            e.target.id = "miss"
+        };
+
         setTimeout(() => machineChoice(), 2000);
     }
 
@@ -194,7 +200,7 @@ export function match(arrPlayer, arrMachine) {
     
     const trigger = throttle(e => {
         triggerPlayerAttack(e);
-        e.target.id = "visited";
+        // e.target.id = "visited";
     })
 
     makeMove();

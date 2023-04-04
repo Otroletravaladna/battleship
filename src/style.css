@@ -246,7 +246,12 @@ button:hover {
     margin-top: 0;
 }
 
-#visited {
-    background: red;
+#miss {
+    background: rgb(255, 255, 255, .3);
+    cursor: not-allowed;
+}
+
+#hit {
+    background: lightgreen;
     cursor: not-allowed;
 }
