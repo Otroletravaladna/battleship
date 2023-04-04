@@ -22,7 +22,7 @@ const trigger = throttle(e => {
     ships.match(data.playerCoords, data.machineCoords, e);
 })
 
-function throttle(cb, delay = 2000) {
+function throttle(cb, delay = 4000) {
     let fired = false;
 
     return (...args) => {

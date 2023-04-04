@@ -25,17 +25,17 @@ export function Gameboard(ship, coords, hit) {
     this.receiveAttack = (hit) => {
         if (this.coords.some(x => x == hit)){
             this.ship.hits += 1;
-            // console.log("Hit!")
             return true;
         }
-        // console.log("Miss!")
         return false;
     };
 
     this.reportSink = () => {
-        this.ship.isSunk();
-        if (this.ship.sink == true)  return displayShipState(`This ${this.ship.type} is wrecked!`);
-        return displayShipState(`But this ship still can fight!`);
+        console.log(this);
+        // this.ship.isSunk();
+        // if (this.ship.sink == true)  return displayShipState(`This ${this.ship.type} is wrecked!`);
+        if (this.ship.isSunk())  return displayShipState(`This ${this.ship.type} is wrecked!`);
+        else return displayShipState(`But this ship still can fight!`);
     }
     
 }
@@ -99,7 +99,7 @@ export function match(arrPlayer, arrMachine, e) {
                 lastHit.coordsx = randomx;
                 lastHit.state = true;
                 return true;
-            }
+            } else displayHitState("Machine miss!");
         }
 
         let adjacentChoice = (x, y) => {
@@ -185,11 +185,9 @@ export function match(arrPlayer, arrMachine, e) {
         if (attack(machineFleet, e.target.className)) {
             displayHitState(`Player hit machine fleet`);
         } else displayHitState(`Player Miss!`)
-        machineChoice();
+        setTimeout(() => machineChoice(), 2000);
     }
 
-
-    // document.querySelector(".machine").addEventListener()
 
     triggerPlayerAttack(e);
 } 

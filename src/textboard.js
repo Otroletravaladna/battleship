@@ -3,15 +3,15 @@ const hit = document.querySelector(".hit");
 
 
 export function displayShipState(msg) {
-    state.textContent = msg;
+    state.textContent = msg.toUpperCase();
     setTimeout(() => {
         state.textContent = "";
-    }, 2000);
+    }, 1200);
 }
 
 export function displayHitState(msg) {
-    hit.textContent = msg;
+    hit.textContent = msg.toUpperCase();
     setTimeout(() => {
         hit.textContent = "";
-    }, 2000);
+    }, 1200);
 }
