@@ -92,11 +92,16 @@ export function match(arrPlayer, arrMachine) {
             if(attack(playerFleet, (y[randomy] + x[randomx]))){
                 console.log(`Hit to player at ${y[randomy] + x[randomx]}`);
                 displayHitState(`Player has been hit!`);
+                document.querySelector(`.${y[randomy] + x[randomx]}`).textContent = "X";
                 lastHit.coordsy = randomy;
                 lastHit.coordsx = randomx;
                 lastHit.state = true;
                 return true;
-            } else displayHitState("Machine miss!");
+            } else {
+                displayHitState("Machine miss!");
+                document.querySelector(`.${y[randomy] + x[randomx]}`).textContent = "/";
+            }
+            
         }
 
         let adjacentChoice = (x, y) => {

@@ -139,6 +139,12 @@ button:hover {
     background-color: white;
 }
 
+.player > div {
+    display: grid;
+    place-content: center;
+    font-size: 2rem;
+}
+
 .machine > div {
     cursor: pointer;
 }
