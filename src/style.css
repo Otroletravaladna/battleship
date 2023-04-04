@@ -139,7 +139,11 @@ button:hover {
     background-color: white;
 }
 
-.player > div:hover , .machine > div:hover{
+.machine > div {
+    cursor: pointer;
+}
+
+.machine > div:hover{
     background: lightblue;
 }
 
