@@ -1,4 +1,4 @@
-import {  machineCoords, y, x } from "./data";
+import {  machineCoords, y, x, visited, lastHit } from "./data";
 import { displayHitState, displayMessage, displayShipState } from "./textboard";
 import { throttle } from "./index";
 
@@ -39,7 +39,7 @@ export function Gameboard(ship, coords, hit) {
 }
 
 export function match(arrPlayer, arrMachine) {
-    let count;
+    // let visited = [];
 
     const playerFleet = {
         ac: new Gameboard("AC", arrPlayer[0]),
@@ -61,9 +61,10 @@ export function match(arrPlayer, arrMachine) {
         
         function selectAttack(lastHit) {
             if (!lastHit.state) {
-                console.log("to random");
+                // console.log("to random");
                 randomChoice(x, y);
-                visited.push(y[lastHit.coordsy] + x[lastHit.coordsx]);
+                console.log(visited);
+                console.log(lastHit)
             }else {
                 console.log("to adjacent");
                 adjacentChoice(x, y);
@@ -74,15 +75,7 @@ export function match(arrPlayer, arrMachine) {
 
         let y = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"];
         let x = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-        let visited = [];
-
-        const lastHit = {
-            coordsy: null, 
-            coordsx: null, 
-            state: false,
-            fnIndex : 0,
-        }
-
+        
         let randomChoice = (x, y) =>  {
             let random = () => (Math.floor(Math.random() * 10));
             let randomy = random();
@@ -90,13 +83,14 @@ export function match(arrPlayer, arrMachine) {
             visited.push(y[randomy] + x[randomx])
 
             if(attack(playerFleet, (y[randomy] + x[randomx]))){
-                console.log(`Hit to player at ${y[randomy] + x[randomx]}`);
                 displayHitState(`Player has been hit!`);
                 document.querySelector(`.${y[randomy] + x[randomx]}`).textContent = "X";
                 lastHit.coordsy = randomy;
                 lastHit.coordsx = randomx;
                 lastHit.state = true;
+                lastHit.last = randomy, randomx;
                 return true;
+
             } else {
                 displayHitState("Machine miss!");
                 document.querySelector(`.${y[randomy] + x[randomx]}`).textContent = "/";
@@ -109,19 +103,26 @@ export function match(arrPlayer, arrMachine) {
             let randomAdjacent = () => (Math.floor(Math.random() * 4));
             if (hitCount == 0) {
                 let index = randomAdjacent();
-                adjMoves[index](); 
+                adjMoves[index]();
+                console.log(index);
                 visited.push(y[lastHit.coordsy] + x[lastHit.coordsx]);
                 if(attack(playerFleet, (y[lastHit.coordsy] + x[lastHit.coordsx]))){
                     lastHit.fnIndex = index;   
                     hitCount = 1;
-                } else return;
+                    document.querySelector(`.${y[lastHit.coordsy] + x[lastHit.coordsx]}`).textContent = "X";
+                } else {
+                    console.log(index);
+                    document.querySelector(`.${y[lastHit.coordsy]  + x[lastHit.coordsx]}`).textContent = "/";
+                };
 
             } else if (hitCount == 1) {
                 adjMoves[lastHit.fnIndex]();
                 visited.push(y[lastHit.coordsy] + x[lastHit.coordsx]);
                 if (attack(playerFleet, (y[lastHit.coordsy] + x[lastHit.coordsx]))) {
+                    document.querySelector(`.${y[lastHit.coordsy] + x[lastHit.coordsx]}`).textContent = "X";
                     return;
                 } else {
+                    document.querySelector(`.${y[lastHit.coordsy]  + x[lastHit.coordsx]}`).textContent = "/";
                     hitCount = -1;
                 }
 
@@ -183,7 +184,6 @@ export function match(arrPlayer, arrMachine) {
 
     
     function triggerPlayerAttack(e) {
-        console.log(e.target);
         if (attack(machineFleet, e.target.className)) {
             displayHitState(`Player hit machine fleet`);
             e.target.id = "hit";
