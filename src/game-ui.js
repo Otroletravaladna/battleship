@@ -129,7 +129,7 @@ function dragItem() {
             if (shipSize == 0) {
                 playerCoords.push(ship.map(e => e.className));
                 getFleet();
-                src.remove();
+                document.querySelector(".set-fleet").remove();
             }
             else if(shipSize < 3) displayFleetElement(2);
             else displayFleetElement(shipSize);
