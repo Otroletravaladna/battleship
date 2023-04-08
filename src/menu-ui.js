@@ -40,7 +40,7 @@ export function changeText() {
             menuScreen.style.display = "none";
             game.createGrids();
             game.displayPlayerName();
-            // count++;
+            count++;
         } 
     }
 }
