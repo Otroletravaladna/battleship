@@ -88,30 +88,31 @@ export function match(arrPlayer, arrMachine) {
                 lastHit.coordsy = randomy;
                 lastHit.coordsx = randomx;
                 lastHit.state = true;
-                lastHit.last = randomy, randomx;
+                lastHit.last = [randomy, randomx];
+                console.log(lastHit.last)   
                 return true;
 
             } else {
                 displayHitState("Machine miss!");
                 document.querySelector(`.${y[randomy] + x[randomx]}`).textContent = "/";
             }
-            
         }
 
+        let hitCount = 0;
+
         let adjacentChoice = (x, y) => {
-            let hitCount = 0;
             let randomAdjacent = () => (Math.floor(Math.random() * 4));
             if (hitCount == 0) {
                 let index = randomAdjacent();
                 adjMoves[index]();
-                console.log(index);
                 visited.push(y[lastHit.coordsy] + x[lastHit.coordsx]);
                 if(attack(playerFleet, (y[lastHit.coordsy] + x[lastHit.coordsx]))){
-                    lastHit.fnIndex = index;   
+                    lastHit.fnIndex = index;
+                    lastHit.last = [lastHit.coordsy, lastHit.coordsx]
                     hitCount = 1;
                     document.querySelector(`.${y[lastHit.coordsy] + x[lastHit.coordsx]}`).textContent = "X";
                 } else {
-                    console.log(index);
+                    hitCount = -1;
                     document.querySelector(`.${y[lastHit.coordsy]  + x[lastHit.coordsx]}`).textContent = "/";
                 };
 
@@ -199,7 +200,8 @@ export function match(arrPlayer, arrMachine) {
 
     function makeMove() {
         document.querySelector(".machine").addEventListener("click", e => {
-            trigger(e);
+            if (e.target.id === "") return trigger(e);
+            return;
         });
     }
     
@@ -212,7 +214,7 @@ export function match(arrPlayer, arrMachine) {
 } 
 
 
-function attack(enemy, coords){
+export function attack(enemy, coords){
     let hit = false;
     for (let [key, value] of Object.entries(enemy)){
         if(value.receiveAttack(coords)) {
