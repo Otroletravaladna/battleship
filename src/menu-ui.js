@@ -21,7 +21,6 @@ export function changeText() {
     })
 
     function nextScreen() {
-        console.log(count);
         container.classList.remove("animate")
         void container.offsetWidth;
         container.classList.add("animate");
